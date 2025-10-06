@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { searchMovies } from "./features/api.js";
+import MoviePoster from "./components/MoviePoster.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [query, setQuery] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const list = await searchMovies(query);
+    setMovies(list);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div style={{ padding: 16 }}>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search movie…"
+        />
+        <button type="submit" disabled={!query.trim()}>
+          Search
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </form>
+      <ul
+        style={{
+          marginTop: 12,
+          display: "grid",
+          gap: 10,
+          listStyle: "none",
+          padding: 0,
+        }}
+      >
+        {movies.map((movie) => (
+          <li
+            key={movie.id}
+            style={{ display: "flex", alignItems: "center", gap: 8 }}
+          >
+            <MoviePoster path={movie.poster_path} width={60} height={90} />
+            <span>{movie.original_title}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
-
-export default App
