@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { searchMovies } from "./features/api.js";
 import MoviePoster from "./components/MoviePoster.jsx";
+import { Link } from "react-router-dom";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -43,6 +44,13 @@ export default function App() {
           </li>
         ))}
       </ul>
+
+      <>
+        <nav>
+          <Link to="/wishList">wishList</Link>
+          <Link to="/movieDetails">movieDetail</Link>
+        </nav>
+      </>
     </div>
   );
 }
