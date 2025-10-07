@@ -2,6 +2,7 @@ import { useState } from "react";
 import { searchMovies } from "./features/api.js";
 import MoviePoster from "./components/MoviePoster.jsx";
 
+
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);

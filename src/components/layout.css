@@ -1,0 +1,31 @@
+.layout-container {
+  padding: 16px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  flex: 1;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Margin för content under navbar */
+.content-wrapper {
+  margin-top: 60px;
+}
+
