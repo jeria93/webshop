@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import "./wishList.css";
-import { Heart, Trash2} from "lucide-react";
+import s from "./wishList.module.css";
+import { Heart, Trash2, ArrowLeftIcon} from "lucide-react";
 import { useState } from "react";
+import { priceFromId } from "../features/api";
 
 function WishList({defaultLiked = false, onChange, onDelete}) {
   const [liked, setLiked] = useState(defaultLiked);
@@ -14,24 +15,33 @@ function WishList({defaultLiked = false, onChange, onDelete}) {
 
   return (
     <>
-      <section className="wishlist">
+      <section className={s.wishlist}>
 
-        <h1 className="rubrik">Önksade artiklar</h1>
-        <section className="card">
-          <section className="buttons">
-          <button onClick={toggle}
+        <h1 className={s.rubrik}>Önskelista</h1>
+        <section className={s.wishCard}>
+
+          <div className={s.movieImg}>
+            <p>"Bild på film"</p>
+          </div>
+          <div className={s.moviePrice}>
+             <p>Hyra: 79kr logik{priceFromId}</p>
+             <p>Köpa: 169kr logik{priceFromId}</p>
+             </div>
+         
+          <section className={s.buttons}>
+          <button type="button" onClick={toggle}
            aria-pressed={liked} 
           aria-label={liked? "tabort gilla" : "gilla"}
-          className="icon-btn icon-btn--heart">
-            <Heart className="heart-btn" aria-hidden="true"/>
+          className={`${s["iconBtn"]} ${s["iconBtnHeart"]}`}>
+            <Heart className={s.heartBtn} aria-hidden="true"/>
           </button>
-          <button className="icon-btn"onClick={onDelete}> <Trash2 className="trash-btn"/> </button>
+          <button type="button" className={s.iconBtn} onClick={onDelete}> <Trash2 className={s.trashBtn}/> </button>
           </section>
 
         </section>
-
+        <Link className={s.linkBtn} to="/"><ArrowLeftIcon/> Tillbaka</Link>
       </section>
-      <Link to="/">Home</Link>
+      
     </>
   );
 }
