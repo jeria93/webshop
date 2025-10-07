@@ -1,7 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
+import { useState } from "react";
 import "./Layout.css";
 
 export default function Layout() {
+
+const [showShoppingCart, SetShowShoppingCart] = useState(false);
+
   return (
     <div className="layout-container">
       <nav className="navbar"> 
