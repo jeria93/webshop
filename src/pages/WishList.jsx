@@ -41,11 +41,7 @@ function WishList({defaultLiked = false, onChange, onDelete}) {
         </section>
         <Link className={s.linkBtn} to="/"><ArrowLeftIcon/> Tillbaka</Link>
       </section>
-<<<<<<< HEAD
-      
-=======
 
->>>>>>> origin/dev-main
     </>
   );
 }
