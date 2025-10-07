@@ -1,0 +1,78 @@
+.wishlist{
+  width: min(100%, 800px);  
+  margin-inline: auto;     
+  align-self: flex-start;
+  gap: 1rem;
+ }
+
+.iconBtn {
+  all: unset;                  
+  display: inline-grid;
+  place-items: center;
+  background: none;
+  cursor: pointer;
+ 
+}
+.iconBtn:active {
+     transform: translateY(5px); 
+    } 
+.heartBtn{
+    width: 23px;
+    height: 23px;
+    stroke: currentColor; 
+    color: #939496;   
+    fill: #939496;       
+
+}
+.iconBtnHeart[aria-pressed="true"] .heartBtn {
+  color: #980705;     
+  fill: currentColor;           
+}
+.trashBtn{
+    color:black;
+}
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 1rem;
+
+}
+.moviePrice{
+  color: black;
+  padding-right: 20px;
+
+}
+.wishCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+    border-radius: 1rem;
+    border: 2px solid white;
+    background-color: beige;
+    gap: 1rem;
+    padding: 1rem;
+   
+}
+.rubrik{
+   text-align: center;
+   font-style: italic;
+   margin: 16px 0 7rem; 
+   width: 100%;
+}
+.linkBtn{
+  display: flex;
+  justify-content: center;
+  color: azure;
+  gap: 0.5rem;
+  
+}
+.movieImg{
+  color: black;
+}
+
+
+
+
