@@ -5,9 +5,7 @@ const movieDetails = () => {
   return (
     <div>
       movieDetails
-      <>
-        <Link to="/">Home</Link>
-      </>
+
     </div>
   );
 };
