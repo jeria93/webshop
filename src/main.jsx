@@ -6,7 +6,6 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import MovieDetails from "./pages/MovieDetails.jsx/";
 import WishList from "./pages/WishList.jsx";
 import Layout from "./components/Layout.jsx";
-import Cart from "./pages/cart.jsx";
 import Account from "./pages/account.jsx";
 
 const router = createHashRouter([
@@ -17,7 +16,7 @@ const router = createHashRouter([
     children: [
       { path: "/", element: <App /> },
       { path: "/wishList", element: <WishList /> },
-      { path: "/cart", element: <Cart /> },
+     
       { path: "/account", element: <Account /> },
 
       { path: "/movieDetails", element: <MovieDetails /> },
