@@ -45,6 +45,8 @@ function WishList({ defaultLiked = false, onChange, onDelete }) {
           <ArrowLeftIcon /> Tillbaka
         </Link>
       </section>
+
+      
     </>
   );
 }
