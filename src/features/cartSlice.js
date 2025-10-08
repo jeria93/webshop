@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-function priceFromId(id) {
-  const n = Number(id);
-  return 79 + (n % 20);
-}
+import { priceFromId } from "../utils/format.js";
 
 const initialState = { items: [] };
 
