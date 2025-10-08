@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { RiDeleteBin6Fill } from 'react-icons/ri';
+import { IoCloseCircleOutline } from "react-icons/io5";
+
 
 // Test objekt innan redux biten är klar
 // type, tänker mig poster, film, rental mm
@@ -78,20 +78,54 @@ const sampleData = [
 ];
 
 
-
-
-//Läsa in produkterna via Redux
-export default function ShoppingCart({visibility, onClose}){
-
-  
-
 // slumpa lite leverans alternativ
 function getDeliveryDays(){
   const shipingDays = ["Skickas i dag", "Skickas inom 2-5 vardagar", "Invänta besked om leverans"]
   return shipingDays[Math.floor(Math.random() * 3)];
 }
 
+//Läsa in produkterna via Redux
+export default function ShoppingCart({visibility, onClose}){
 
+  
+
+
+return(
+  <div className='modal' style={{display: visibility? "block": "none"}}>
+   <div className='cart'>
+
+    <div className='div-header product-header'>Varukorg</div>
+    <div className='div6'> fri frakt?</div>
+   
+     <div className='parent'>
+    {sampleData.map((item) => (
+ 
+  
+   <div>
+  <div className='div-img'> <img src={item.poster_logo} alt="" /></div>
+  <div className='div-content'> content </div>
+  <div className='div-quantity'> quantity</div>
+  
+
+</div>
+
+
+   )) }
+</div>
+<div className='div-sum-payment'> betalning</div>
+
+
+        </div>   
+    </div>
+);
+
+
+}
+
+
+// <FaRegTrashCan />  <IoMdAddCircleOutline /> <GrSubtractCircle />
+
+/*
 return (
     <div className='modal' style={{display: visibility? "block": "none"}}>
         <div className='cart'>
@@ -123,13 +157,4 @@ return (
     </div>
 </div>
                 
-               
-    
-);
-
-
-}
-
-
-// <FaRegTrashCan />  <IoMdAddCircleOutline /> <GrSubtractCircle />
-
+      */
