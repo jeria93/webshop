@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -76,10 +77,20 @@ const sampleData = [
   }
 ];
 
-const emptySampleData = [];
+
+
 
 //Läsa in produkterna via Redux
 export default function ShoppingCart({visibility, onClose}){
+
+  
+
+// slumpa lite leverans alternativ
+function getDeliveryDays(){
+  const shipingDays = ["Skickas i dag", "Skickas inom 2-5 vardagar", "Invänta besked om leverans"]
+  return shipingDays[Math.floor(Math.random() * 3)];
+}
+
 
 return (
     <div className='modal' style={{display: visibility? "block": "none"}}>
@@ -96,9 +107,13 @@ return (
                             <div className="product-info">
                                 <div className="product-title">{item.title}</div>
                                 <div className="product-details">
-                                    <span>Antal: {item.quantity}</span>
-                                    <span>Pris: {item.price} kronor</span>
-                                    <span>Total: {item.price * item.quantity}kronor</span>
+                                  {getDeliveryDays()}
+                                  <p style={ getDeliveryDays === "Skickas i dag" ? { color: "green" } : { color: "black" } }>
+                                 
+                                    </p>
+                                    <p>Antal: {item.quantity}</p>
+                                    <p>Pris: {item.price} kronor</p>
+                                    <p>Total: {item.price * item.quantity}kronor</p>
                                 </div>
                             </div>
                         </div>

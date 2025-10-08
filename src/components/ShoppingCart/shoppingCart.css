@@ -69,7 +69,7 @@
 .product-details {
     font-size: 0.9rem;
     color: #666;
-    display: flex;
+    display: block;
     gap: 10px;
 }
 
