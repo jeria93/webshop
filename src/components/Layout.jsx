@@ -2,6 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "./layout.css";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import {UserRound, Search, ShoppingBasket, Star, House} from "lucide-react";
+import logo from "../assets/MovieCart.png"
 
 export default function Layout() {
   const [showShoppingCart, SetShowShoppingCart] = useState(false);
@@ -15,21 +17,22 @@ export default function Layout() {
         }}
       />
 
-      <nav className="navbar">
-        <Link to="/">Hem</Link>
-        <Link to="/wishList">Önskelista</Link>
-
+      <nav className="navbar"> 
+        <img className="logoImg" src={logo} alt="MovieCart"></img>
+        
+        <div className="navCenter">
+        <Link className="linkIcon" to="/"><House/>Hem</Link>
+        <Link className="linkIcon" to="/wishList"><Star/>Favoriter</Link>
+        
         {/*Logik för varukorgen */}
-        <Link
-          onClick={() => {
-            SetShowShoppingCart(true);
-          }}
-        >
-          Kundvagn
-        </Link>
+        <Link  className="linkIcon" onClick={() => {
+          SetShowShoppingCart(true);
+        }} ><ShoppingBasket/>Varukorg</Link>
 
-        <Link to="/account">Konto</Link>
-        <Link to="/search">Sök</Link>
+
+        <Link className="linkIcon" to="/account"><UserRound/>Konto</Link>
+        <Link className="linkIcon" to="/movieDetails"><Search/>Sök</Link>
+        </div>
       </nav>
 
       {/* Margin för content under navbar */}
