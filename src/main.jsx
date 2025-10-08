@@ -6,6 +6,8 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import MovieDetails from "./pages/MovieDetails.jsx";
 import WishList from "./pages/WishList.jsx";
 import Layout from "./components/Layout.jsx";
+import Cart from "./pages/cart.jsx";
+import Account from "./pages/account.jsx";
 import { Provider } from "react-redux";
 import { store } from "./features/store.js";
 
@@ -15,8 +17,11 @@ const router = createHashRouter([
     element: <Layout />,
     children: [
       { path: "/", element: <App /> },
-      { path: "/movieDetails", element: <MovieDetails /> },
       { path: "/wishList", element: <WishList /> },
+      { path: "/cart", element: <Cart /> },
+      { path: "/account", element: <Account /> },
+
+      { path: "/movieDetails", element: <MovieDetails /> },
     ],
   },
 ]);

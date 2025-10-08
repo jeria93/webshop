@@ -17,15 +17,20 @@
 .navbar a {
   text-decoration: none;
   color: black;
-  flex: 1;
+  padding: 10px 15px;
+  margin: 0 5px;
 }
+
+
 
 .navbar a:hover {
   text-decoration: underline;
 }
 
+
 /* Margin för content under navbar */
 .content-wrapper {
   margin-top: 60px;
 }
+
 
