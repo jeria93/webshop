@@ -7,7 +7,6 @@ function WishList() {
       <section className="wishlist">
         <h1>Wish List</h1>
       </section>
-
     </>
   );
 }
