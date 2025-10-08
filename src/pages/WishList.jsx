@@ -21,8 +21,8 @@ function WishList({ defaultLiked = false, onChange, onDelete }) {
             <p>"Bild på film"</p>
           </div>
           <div className={s.moviePrice}>
-            <p>Hyra: 79kr logik{priceFromId}</p>
-            <p>Köpa: 169kr logik{priceFromId}</p>
+            {/* <p>Hyra: 79kr logik{priceFromId}</p>
+            <p>Köpa: 169kr logik{priceFromId}</p> */}
           </div>
 
           <section className={s.buttons}>
@@ -45,8 +45,6 @@ function WishList({ defaultLiked = false, onChange, onDelete }) {
           <ArrowLeftIcon /> Tillbaka
         </Link>
       </section>
-
-      
     </>
   );
 }
