@@ -4,17 +4,13 @@
   gap: 12px;
 }
 
-.search__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+/* Header */
 .search__title {
   margin: 0;
   font-size: 18px;
 }
 
+/* Form */
 .search__form {
   display: flex;
   gap: 8px;
@@ -29,28 +25,61 @@
   padding: 8px 12px;
 }
 
+/* Results list */
 .search__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
+/* One row: [poster] [info] [prices] */
 .search__item {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 12px;
-  border: 1px solid whitesmoke;
+  border: 1px solid lightgray;
   border-radius: 8px;
   padding: 8px;
 }
 
+/* Left: poster + year */
+.search__poster {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.search__year {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+/* Middle: title/info */
 .search__info {
   min-width: 0;
 }
 
-.search__addBtn {
-  padding: 6px 10px;
+/* Right: prices */
+.search__prices {
+  text-align: right;
+  display: grid;
+  gap: 4px;
+}
+
+.search__chevron {
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.5;
+  padding: 0 2px;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.search__item:hover .search__chevron,
+.search__item:focus-within .search__chevron {
+  opacity: 0.9;
+  transform: translateX(2px);
 }
