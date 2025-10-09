@@ -1,23 +1,21 @@
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
-import "./Layout.css";
+import "./layout.css";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import {UserRound, Search, ShoppingBasket, Star, House} from "lucide-react";
 import logo from "../assets/MovieCart.png"
 
-
-
 export default function Layout() {
-
-const [showShoppingCart, SetShowShoppingCart] = useState(false);
+  const [showShoppingCart, SetShowShoppingCart] = useState(false);
 
   return (
     <div className="layout-container">
-      <ShoppingCart 
-      visibility={showShoppingCart}
-      onClose={() => {
-        SetShowShoppingCart(false)
-      }}/>
+      <ShoppingCart
+        visibility={showShoppingCart}
+        onClose={() => {
+          SetShowShoppingCart(false);
+        }}
+      />
 
       <nav className="navbar"> 
         <img className="logoImg" src={logo} alt="MovieCart"></img>
@@ -33,7 +31,7 @@ const [showShoppingCart, SetShowShoppingCart] = useState(false);
 
 
         <Link className="linkIcon" to="/account"><UserRound/>Konto</Link>
-        <Link className="linkIcon" to="/movieDetails"><Search/>Sök</Link>
+        <Link className="linkIcon" to="/search"><Search/>Sök</Link>
         </div>
       </nav>
 
@@ -41,7 +39,6 @@ const [showShoppingCart, SetShowShoppingCart] = useState(false);
       <div className="content-wrapper">
         <Outlet />
       </div>
-      
     </div>
   );
 }

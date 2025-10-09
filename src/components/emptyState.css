@@ -1,0 +1,9 @@
+.empty {
+  padding: 24px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.empty__title {
+  margin: 0;
+}
