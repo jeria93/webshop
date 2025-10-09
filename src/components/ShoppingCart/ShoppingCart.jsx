@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { FaCheck } from "react-icons/fa";
+import CartItem from './CartItem';
 
-
-// Test objekt innan redux biten är klar
-// type, tänker mig poster, film, rental mm
 
 
 const sampleData = [
@@ -30,7 +27,7 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "RENTAL",
-    price: 200,
+    price: 20,
     id: 3
   },
   {
@@ -38,7 +35,7 @@ const sampleData = [
     quantity: 3,
     poster_logo: testImg,
     type: "POSTER",
-    price: 180,
+    price: 18,
     id: 4
   },
   {
@@ -46,7 +43,7 @@ const sampleData = [
     quantity: 2,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 160,
+    price: 16,
     id: 5
   },
   {
@@ -54,7 +51,7 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "RENTAL",
-    price: 140,
+    price: 14,
     id: 6
   },
   {
@@ -62,7 +59,7 @@ const sampleData = [
     quantity: 2,
     poster_logo: testImg,
     type: "POSTER",
-    price: 170,
+    price: 17,
     id: 7
 
   },
@@ -71,90 +68,66 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 130,
+    price: 13,
     id: 8
 
   }
 ];
 
 
-// slumpa lite leverans alternativ
-function getDeliveryDays(){
-  const shipingDays = ["Skickas i dag", "Skickas inom 2-5 vardagar", "Invänta besked om leverans"]
-  return shipingDays[Math.floor(Math.random() * 3)];
-}
+
 
 //Läsa in produkterna via Redux
 export default function ShoppingCart({visibility, onClose}){
 
+//över 500 kronor och fri frakt
+const isFreeShiping = () => {
+  let totalPrice = 500;  //ändras till 0 
   
+  sampleData.map((item) => {
+      totalPrice = totalPrice + item.price;
+      console.log("total: "+ totalPrice + " item: " + item.price);
+  });
+      if (totalPrice > 500) {
+    return (
+      <p style={{ color: "green",  gap: "8px" }}>
+        <FaCheck color="green" />
+        Fraktfria alternativ finns
+      </p>
+    );
+  }
+
+  return ( <p> {500 - totalPrice} Kvar till fri frakt (handla för mer än 500 kr) </p>)  ;
+
+ }
 
 
 return(
-  <div className='modal' style={{display: visibility? "block": "none"}}>
-   <div className='cart'>
-
-    <div className='div-header product-header'>Varukorg</div>
-    <div className='div6'> fri frakt?</div>
-   
-     <div className='parent'>
-    {sampleData.map((item) => (
- 
+ <div className='modal' style={{display: visibility? "block": "none"}}>
+        <div className='cart'>
+  <div className="parent">
+  <div className="div-header">Varukorg </div>
+  <div className="div-shipping-cost"> 
+             
+              {isFreeShiping()}
+  </div>
   
-   <div>
-  <div className='div-img'> <img src={item.poster_logo} alt="" /></div>
-  <div className='div-content'> content </div>
-  <div className='div-quantity'> quantity</div>
-  
+  <div className="div-display-area"> 
 
+        {/* LOGIK för att visa en vara*/}
+        <CartItem items={sampleData}></CartItem>
+
+  </div>
+  <div className="payment"> Betalning</div>
+</div>
+</div>
 </div>
 
 
-   )) }
-</div>
-<div className='div-sum-payment'> betalning</div>
 
-
-        </div>   
-    </div>
+      
 );
 
 
 }
 
-
-// <FaRegTrashCan />  <IoMdAddCircleOutline /> <GrSubtractCircle />
-
-/*
-return (
-    <div className='modal' style={{display: visibility? "block": "none"}}>
-        <div className='cart'>
-            <div className='header'>
-                <h2>Kundvagn</h2>
-                <button className='btn btn-close' onClick={onClose}>
-                <AiFillCloseCircle  size={34}/>
-                </button>
-                {sampleData.map((item) => (
-                    <div key={item.id}>
-                        <div className="cart-product">
-                            <img src={item.poster_logo} alt={item.title} className='cart-img'/> <RiDeleteBin6Fill size={34} />
-                            <div className="product-info">
-                                <div className="product-title">{item.title}</div>
-                                <div className="product-details">
-                                  {getDeliveryDays()}
-                                  <p style={ getDeliveryDays === "Skickas i dag" ? { color: "green" } : { color: "black" } }>
-                                 
-                                    </p>
-                                    <p>Antal: {item.quantity}</p>
-                                    <p>Pris: {item.price} kronor</p>
-                                    <p>Total: {item.price * item.quantity}kronor</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-        </div>
-    </div>
-</div>
-                
-      */

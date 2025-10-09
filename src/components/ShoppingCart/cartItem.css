@@ -1,0 +1,42 @@
+/* Container för alla produkter */
+.parent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;               /* mellanrum mellan rader */
+}
+
+
+.product-item {
+  display: flex;
+  flex-direction: row;     
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  align-items: center;
+}
+
+.div-img img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.div-description {
+    flex: 1;               
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
+}
+
+
+.div-quantity {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+color: black;
+font-size:1.5rem;
+}
