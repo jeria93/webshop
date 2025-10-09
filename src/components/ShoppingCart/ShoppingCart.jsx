@@ -119,6 +119,7 @@ return(
 
   </div>
   <div className="payment"> Betalning</div>
+  <button className='btn-payment'>Betalning</button>
 </div>
 </div>
 </div>

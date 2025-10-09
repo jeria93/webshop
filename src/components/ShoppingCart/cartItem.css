@@ -40,3 +40,23 @@
 color: black;
 font-size:1.5rem;
 }
+
+.btn-payment {
+  background-color: #28a745;     
+  padding: 14px 0;                 
+  width: 100%;                     
+  border: none;                    
+  border-radius: 9999px;           
+  cursor: pointer;                 
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.green-btn:hover {
+  background-color: #218838;       
+  transform: scale(1.02);          
+}
+
+.green-btn:active {
+  background-color: #1e7e34;       
+  transform: scale(0.98);
+}
