@@ -31,7 +31,7 @@ export default function Layout() {
 
 
         <Link className="linkIcon" to="/account"><UserRound/>Konto</Link>
-        <Link className="linkIcon" to="/movieDetails"><Search/>Sök</Link>
+        <Link className="linkIcon" to="/search"><Search/>Sök</Link>
         </div>
       </nav>
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function App() {
+export default function HomePage() {
   return (
     <div style={{ padding: 16 }}>
       <h1>Hem</h1>
