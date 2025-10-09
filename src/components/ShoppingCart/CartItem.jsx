@@ -26,7 +26,7 @@ function getDeliveryDays(){
 export default function CartItem({items}){
 
     const [quantity, setQuantity] = useState(items.map(item => item.quantity));
-    const [deliveryTime, setDeliveryTime] = useState(getDeliveryDays())
+   
 
         function handleIncClick(index){
         setQuantity(prev =>
@@ -38,7 +38,7 @@ export default function CartItem({items}){
         prev.map((q, i) => (i === index ? q - 1 : q))
         ); }
 
-    console.log(items)
+
 
     return (
         <div className='parent'>
@@ -50,7 +50,7 @@ export default function CartItem({items}){
                 <div className='div-description'>
                     <h4>{item.title}</h4>
                     <span>pris: {item.price} :- </span>
-                    <span>totalt: {item.price * item.quantity[index]}</span>
+                    <span>totalt: {item.price * quantity[index]}</span>
                     {getDeliveryDays()}
                 </div>
                     <div className='div-quantity'>
