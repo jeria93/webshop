@@ -56,10 +56,6 @@
   background: antiquewhite;
 }
 
-.div-shipping-cost p{
-  
-  background: antiquewhite;
-}
 
 .div-display-area {
   background: antiquewhite;
@@ -67,4 +63,5 @@
 
 .payment {
   background: antiquewhite;
+  color: black;
 }

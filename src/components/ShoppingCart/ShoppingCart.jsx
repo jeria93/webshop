@@ -118,8 +118,11 @@ return(
         <CartItem items={sampleData}></CartItem>
 
   </div>
-  <div className="payment"> Betalning</div>
+ 
+  <div className="payment"> 
+   <h4>Total: </h4>
   <button className='btn-payment'>Betalning</button>
+  </div>
 </div>
 </div>
 </div>
