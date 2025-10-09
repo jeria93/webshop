@@ -20,7 +20,7 @@ const router = createHashRouter([
       { path: "/search", element: <Search /> },
       { path: "/wishList", element: <WishList /> },
       { path: "/account", element: <Account /> },
-      { path: "/movieDetails", element: <MovieDetails /> },
+      { path: "/movieDetails/:id", element: <MovieDetails /> },
     ],
   },
 ]);

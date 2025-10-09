@@ -29,7 +29,7 @@
   fill: currentColor;           
 }
 .trashBtn{
-    color:black;
+    color:white;
 }
 .buttons{
     display: flex;
@@ -40,7 +40,7 @@
 
 }
 .moviePrice{
-  color: black;
+  color: white;
   padding-right: 20px;
 
 }
@@ -49,9 +49,9 @@
     flex-direction: row;
     justify-content: end;
     width: 100%;
-    border-radius: 1rem;
+    border-radius: 8px;
     border: 2px solid white;
-    background-color: beige;
+    background:rgba(0, 0, 0, 0.6);
     gap: 1rem;
     padding: 1rem;
    
@@ -70,7 +70,7 @@
   
 }
 .movieImg{
-  color: black;
+  color: white;
 }
 
 
