@@ -3,6 +3,12 @@ import "./search.css";
 import MoviePoster from "../components/MoviePoster";
 import { useState } from "react";
 import EmptyState from "../components/EmptyState";
+import {
+  formatSEK,
+  rentPriceFromId,
+  buyPriceFromId,
+  posterPriceFromId,
+} from "../utils/format.js";
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -37,7 +43,8 @@ export default function Search() {
         </button>
       </form>
 
-      {!hasSearched && <EmptyState title="Sök efter en film" />}
+      {!hasSearched && <EmptyState title="Sök efter filmer" />}
+
       {hasSearched && movies.length === 0 && (
         <EmptyState title={`Inga resultat för "${query}"`} />
       )}
@@ -45,12 +52,32 @@ export default function Search() {
       {movies.length > 0 && (
         <ul className="search__list">
           {movies.map((movie) => {
+            const year = (movie.release_date ?? "").slice(0, 4) || "—";
+            const rent = rentPriceFromId(movie.id);
+            const buy = buyPriceFromId(movie.id);
+            const poster = posterPriceFromId(movie.id);
+
             return (
               <li key={movie.id} className="search__item">
-                <MoviePoster path={movie.poster_path} width={60} height={90} />
+                <div className="search__poster">
+                  <MoviePoster
+                    path={movie.poster_path}
+                    width={60}
+                    height={90}
+                  />
+                  <div className="search__year">{year}</div>
+                </div>
+
                 <div className="search__info">
                   <strong>{movie.title ?? movie.original_title}</strong>
                 </div>
+
+                <div className="search__prices">
+                  <div>Hyr: {formatSEK(rent)}</div>
+                  <div>Köp: {formatSEK(buy)}</div>
+                  <div>Affisch: {formatSEK(poster)}</div>
+                </div>
+                <div className="search__chevron">›</div>
               </li>
             );
           })}
@@ -59,13 +86,3 @@ export default function Search() {
     </div>
   );
 }
-
-/* 
-
-visa årtal precis under affish
-3 priser:
-- köpa
-- hyra
-- köpa affisch
-
-*/
