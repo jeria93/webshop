@@ -77,6 +77,7 @@ export default function Search() {
                   <div>Köp: {formatSEK(buy)}</div>
                   <div>Affisch: {formatSEK(poster)}</div>
                 </div>
+                <div className="search__chevron">›</div>
               </li>
             );
           })}
