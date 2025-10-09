@@ -1,3 +1,12 @@
+:root {
+/* --primary: #0f172a; */
+  --secondary: #1e293b;
+  --accent: #06b6d4;
+  --light: #f8fafc;
+  --dark: #020617;
+  --gray: #334155;
+}
+
 .account-container {
   padding: 40px 20px;
 }
@@ -10,7 +19,7 @@
 .account-header h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  background: linear-gradient(90deg, var(--accent), #ff7b9c);
+  background: linear-gradient(90deg, var(--accent), #22d3ee);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -74,7 +83,7 @@
 .btn1 {
     display: inline-block;
     padding: 14px 24px;
-    background: linear-gradient(135deg, var(--accent), #c13558);
+    background: linear-gradient(135deg, var(--accent), #0891b2);
     color: white;
     border: none;
     border-radius: 10px;
@@ -89,7 +98,7 @@
 
 .btn1:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+    box-shadow: 0 6px 20px rgba(69, 140, 233, 0.4);
 }
 
 .btn2 {
