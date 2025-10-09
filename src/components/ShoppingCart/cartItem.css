@@ -2,20 +2,19 @@
 .parent {
   display: flex;
   flex-direction: column;
-  gap: 12px;               /* mellanrum mellan rader */
+  gap: 1px;       
+          /* mellanrum mellan rader */
 }
 
 
 .product-item {
   display: flex;
   flex-direction: row;     
-  gap: 12px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  /*background-color: #6f0e0e;*/
-  opacity: 0;
+  gap: 8px;
+  padding: 8px;
+ /* border: 1px solid rgb(249, 178, 27);*/
   align-items: center;
+
 }
 
 .div-img img {
@@ -30,7 +29,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: black;
+  color: rgb(14, 152, 185);
 }
 
 
@@ -38,7 +37,25 @@
   width: 60px;
   text-align: center;
   font-weight: bold;
-color: black;
-font-size:1.5rem;
+color: rgb(14, 152, 185);
+font-size:0.1rem;
 }
 
+.p-quantity {
+  font-size: 1.0rem;
+  color: black;
+}
+
+.text-heading{
+   background-color: rgba(13, 14, 73, 0.5); /* halvtransparent mörk bakgrund */
+  color: white;
+  padding: 0.2rem 0.5rem; /* lite utrymme runt texten */
+  border-radius: 4px;
+}
+
+.text-content{
+   background-color: rgba(13, 14, 73, 0.5); /* halvtransparent mörk bakgrund */
+  color: white;
+  padding: 0.2rem 0.5rem; /* lite utrymme runt texten */
+  border-radius: 4px;
+}

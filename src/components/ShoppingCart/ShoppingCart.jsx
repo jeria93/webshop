@@ -3,7 +3,7 @@ import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
 import background from '../../assets/background.jpg'
-
+import { IoCloseCircle } from "react-icons/io5";
 
 
 const sampleData = [
@@ -115,7 +115,10 @@ return(
       >
 
   <div className="parent">
-  <div className="div-header">Varukorg </div>
+  <div className="div-header">
+    <h2>Varukorg</h2> 
+    <IoCloseCircle className='btn-exit' size={34} style={{color: "red"}} onClick={onClose}/>
+  </div>
   <div className="div-shipping-cost"> 
              
               {isFreeShiping()}
