@@ -1,11 +1,13 @@
 import './account.css';
 import { useState } from 'react';
+import MoviePoster from "../components/MoviePoster";
 
 const Account = () => {
     
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isGuest, setIsGuest] = useState(false);
     const [activeTab,setActiveTab] = useState('profile');
+    
 
     // simulera användardata
     const userData = {
@@ -15,21 +17,21 @@ const Account = () => {
 
     //simulerad filmdata
     const rentedMovies = [
-        { id: 1, title: 'Interstellar', rentDate: "2025-10-09", expires: "2025-10-16" },
-        { id: 2, title: 'Batman', rentDate: "2025-10-09", expires: "2025-10-16" },
-        { id: 3, title: 'Interstellar', rentDate: "2025-10-09", expires: "2025-10-16" },
+        { id: 1, title: 'Interstellar', rentDate: "2025-10-09", expires: "2025-10-16", poster_path: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" },
+        { id: 2, title: 'Batman', rentDate: "2025-10-09", expires: "2025-10-16", poster_path: "/74xTEgt7R36Fpooo50r9T25onhq.jpg" },
+        { id: 3, title: 'Inception', rentDate: "2025-10-09", expires: "2025-10-16", poster_path: "/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" },
     ];
 
     const purchasedMovies = [
-        { id: 4, title: 'Interstellar', purchaseDate: "2025-10-09" },
-        { id: 5, title: 'Batman', purchaseDate: "2025-10-09" },
-        { id: 6, title: 'Interstellar', purchaseDate: "2025-10-09" },
+        { id: 4, title: 'The Shawshank Redemption', purchaseDate: "2025-10-09", poster_path: "/hBcY0fEy9bnZXo33lBfC9PM2QWr.jpg" },
+        { id: 5, title: 'The Dark Knight', purchaseDate: "2025-10-09", poster_path: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg" },
+        { id: 6, title: 'Pulp Fiction', purchaseDate: "2025-10-09", poster_path: "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg" },
     ];
 
-    const watchList = [
-        { id: 7, title: 'Interstellar', addedDate: "2025-10-09" },
-        { id: 8, title: 'Batman', addedDate: "2025-10-09" },
-        { id: 9, title: 'Interstellar', addedDate: "2025-10-09" },
+    const wishlist = [
+        { id: 7, title: 'Dune', addedDate: "2025-10-09", poster_path: "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" },
+        { id: 8, title: 'Oppenheimer', addedDate: "2025-10-09", poster_path: "/ptpr0kGAckfQkJeJIt8st5dglvd.jpg" },
+        { id: 9, title: 'Avatar', addedDate: "2025-10-09", poster_path: "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" },
     ];
 
     const handleLogin = () => {
@@ -56,11 +58,10 @@ const Account = () => {
                 </div>
 
                 <div className='account-tabs'>
-                    <button className={'tab-button ${activeTab === "profile" ? "active" : ""}'} onClick={() => setActiveTab('profile')}>Profil</button>
-                    <button className={'tab-button ${activeTab === "rented" ? "active" : ""}'} onClick={() => setActiveTab('rented')}>Hyrda filmer</button>
-                    <button className={'tab-button ${activeTab === "purchased" ? "active" : ""}'} onClick={() => setActiveTab('purchased')}>Köpta filmer</button>
-                    <button className={'tab-button ${activeTab === "wishlist" ? "active" : ""}'} onClick={() => setActiveTab('wishlist')}>Önskelista</button>
-
+                    <button className={`tab-button ${activeTab === "profile" ? "active" : ""}`} onClick={() => setActiveTab('profile')}>Profil</button>
+                    <button className={`tab-button ${activeTab === "rented" ? "active" : ""}`} onClick={() => setActiveTab('rented')}>Hyrda filmer</button>
+                    <button className={`tab-button ${activeTab === "purchased" ? "active" : ""}`} onClick={() => setActiveTab('purchased')}>Köpta filmer</button>
+                    <button className={`tab-button ${activeTab === "wishlist" ? "active" : ""}`} onClick={() => setActiveTab('wishlist')}>Önskelista</button>
                 </div>
 
                 <div className='account-content'>
@@ -72,7 +73,6 @@ const Account = () => {
                                     <label>Namn:</label>
                                     <span>{userData.name}</span>
                                 </div>
-
                                 <div className='info-item'>
                                     <label>E-post:</label>
                                     <span>{userData.email}</span>
@@ -89,19 +89,16 @@ const Account = () => {
                                 {rentedMovies.map((movie) => (
                                     <div key={movie.id} className='movie-card'>
                                         <h3>{movie.title}</h3>
+                                        <MoviePoster path={movie.poster_path} />
                                         <p>Hyrd: {movie.rentDate}</p>
                                         <p className='expires'>Går ut: {movie.expires}</p>
                                         <button className='watch-btn'>Titta nu</button>
-
                                     </div>
                                 ))}
-
                             </div>
-
                         ) : (
-                            <p>Du har inga hyrda filmer för tillfället.</p>
+                        <p>Du har inga hyrda filmer för tillfället.</p>
                         )}
-
                     </div>
                 )}
 
@@ -111,34 +108,30 @@ const Account = () => {
                         <h2>Dina köpta filmer</h2>
                         {purchasedMovies.length > 0 ? (
                             <div className='movies-grid'>
-                                {rentedMovies.map((movie) => (
+                                {purchasedMovies.map((movie) => (
                                     <div key={movie.id} className='movie-card'>
                                         <h3>{movie.title}</h3>
+                                        <MoviePoster path={movie.poster_path}/>
                                         <p>Köpt: {movie.purchaseDate}</p>
                                         <button className='watch-btn'>Titta nu</button>
-
                                     </div>
                                 ))}
-
                             </div>
-
                         ) : (
-                            <p>Du har inga köpta filmer.</p>
+                        <p>Du har inga köpta filmer.</p>
                         )}
-
                     </div>
                 )}
 
-
-
-                {activeTab === 'watchlist' && (
+                {activeTab === 'wishlist' && (
                     <div className='tab-content'>
                         <h2>Dina sparade filmer</h2>
-                        {watchList.length > 0 ? (
+                        {wishlist.length > 0 ? (
                             <div className='movies-grid'>
-                                {rentedMovies.map((movie) => (
+                                {wishlist.map((movie) => (
                                     <div key={movie.id} className='movie-card'>
                                         <h3>{movie.title}</h3>
+                                        <MoviePoster path={movie.poster_path} />
                                         <button className='rent-btn'>Hyr nu</button>
                                         <button className='purchase-btn'>Köp</button>
                                     </div>
@@ -181,7 +174,7 @@ const Account = () => {
 
     //standard login-sida
     return (
-        <div className="account-container">
+        <div className="account-container"style={{ paddingTop: '10px' }}>
             
             <div className="account-header">
             <h1>Logga in</h1>
