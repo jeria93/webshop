@@ -42,3 +42,55 @@ export async function searchMovies(queryInput) {
     return [];
   }
 }
+// function to get new Recently released and popular movies to put in Homepage
+export async function getRecentlyReleasedMovies({
+  daysBack = 60,
+  page = 1,
+  region = "SE",
+  language = "sv-SE",
+  releaseTypes = "2|3|4",
+  minVotes = 10,
+} = {}) {
+  const today = new Date();
+  const from = new Date(today);
+  from.setDate(from.getDate() - daysBack);
+
+  const toStr = today.toISOString().slice(0, 10); // "YYYY-MM-DD"
+  const fromStr = from.toISOString().slice(0, 10); // "YYYY-MM-DD"
+
+  const url =
+    `${BASE}/discover/movie?` +
+    queryString({
+      api_key: API_KEY,
+      language,
+      region,
+      sort_by: "popularity.desc",
+      "release_date.gte": fromStr,
+      "release_date.lte": toStr,
+      with_release_type: releaseTypes,
+      include_adult: false,
+      include_video: false,
+      "vote_count.gte": minVotes,
+      page,
+    });
+
+  try {
+
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`TMDb ${response.status}`);
+    const json = await response.json();
+
+    const results = Array.isArray(json.results) ? json.results : [];
+    return results.map((m) => ({
+      id: m.id,
+      title: m.title || "(saknar titel)",
+      release_date: m.release_date || "",
+      poster_path: m.poster_path || null,
+      vote_average: typeof m.vote_average === "number" ? m.vote_average : 0,
+    }));
+  } catch (err) {
+    console.error("getRecentlyReleasedMovies failed:", err);
+    return [];
+  }
+}
+

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import s from "./wishList.module.css";
 import { Heart, Trash2, ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
+import { priceFromId } from "../utils/format.js";
 
 function WishList({ defaultLiked = false, onChange, onDelete }) {
   const [liked, setLiked] = useState(defaultLiked);
@@ -15,7 +16,7 @@ function WishList({ defaultLiked = false, onChange, onDelete }) {
   return (
     <>
       <section className={s.wishlist}>
-        <h1 className={s.rubrik}>Önskelista</h1>
+        <h1 className={s.rubrik}>Favoriter</h1>
         <section className={s.wishCard}>
           <div className={s.movieImg}>
             <p>"Bild på film"</p>
