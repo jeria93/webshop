@@ -8,3 +8,8 @@ export function formatSEK(value) {
   if (!Number.isFinite(n)) return "-";
   return SEKFormatter.format(n);
 }
+
+export function priceFromId(id) {
+  const n = Number(id);
+  return 79 + (n % 20);
+}
