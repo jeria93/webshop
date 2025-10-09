@@ -2,6 +2,7 @@ import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
+import background from '../../assets/background.jpg'
 
 
 
@@ -104,7 +105,15 @@ const isFreeShiping = () => {
 
 return(
  <div className='modal' style={{display: visibility? "block": "none"}}>
-        <div className='cart'>
+        <div  className='cart'
+               style={{
+    backgroundImage: `url(${background})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+      
+      >
+
   <div className="parent">
   <div className="div-header">Varukorg </div>
   <div className="div-shipping-cost"> 
@@ -120,8 +129,8 @@ return(
   </div>
  
   <div className="payment"> 
-   <h4>Total: </h4>
-  <button className='btn-payment'>Betalning</button>
+  <h4>Total: {sampleData.price}</h4>
+  <p><button className='btn-payment'>Betalning</button></p>
   </div>
 </div>
 </div>

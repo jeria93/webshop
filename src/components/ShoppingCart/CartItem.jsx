@@ -3,6 +3,8 @@ import img from "../../assets/batman.jpg"
 import { useState } from 'react';
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import background from '../../assets/background.jpg'
+
 
 
 // slumpa lite leverans alternativ
@@ -36,12 +38,16 @@ export default function CartItem({items}){
         function handleDecClick(index){
         setQuantity(prev =>
         prev.map((q, i) => (i === index ? q - 1 : q))
-        ); }
+        ); 
+           
+        
+        }
 
 
 
     return (
-        <div className='parent'>
+        <div className='parent'
+     >
             { items.map((item, index) => (
              <div className='product-item'>
                 <div className='div-img'>

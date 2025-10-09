@@ -9,12 +9,12 @@
   z-index: 1000;
   padding: 2rem;
   box-sizing: border-box;
+ 
   
 }
 
 
 .cart {
-
   max-width: 700px;    /*420*/
   width: 100%;
   max-height: 60%;
@@ -28,6 +28,7 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
   position: relative;
   color: antiquewhite;
+   border: 1px solid rgb(249, 178, 27);
   
 }
 
@@ -45,23 +46,38 @@
   justify-content: center;
   font-weight: bold;
   font-size: 1.5rem;
-  border: 1px solid #000;
+  
   border-radius: 6px;
-  background-color: #0851e2;
-  color: white;
+  background-color: rgba(0, 0, 0,);
+  color: rgb(249, 178, 27);
   
 }
 
 .div-shipping-cost {
-  background: antiquewhite;
+
 }
 
 
 .div-display-area {
-  background: antiquewhite;
+ 
 }
 
 .payment {
-  background: antiquewhite;
+display: block;
+align-items: center;
+justify-content: center;
   color: black;
+}
+
+.btn-payment {
+
+  display: block;                  /* block så att margin fungerar */
+  margin: 20px auto;               /* auto centrerar horisontellt */
+  background-color: rgb(249, 178, 27);     
+  padding: 14px;
+  border: 2px solid black;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-align: center;
+     
 }
