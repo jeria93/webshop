@@ -138,3 +138,47 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+.account-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 10px;
+}
+
+.tab-button {
+  padding: 10px 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #6b6bff);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+/* .tab-button:hover {
+  background-color: #f5f5f5;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+} */
+
+.account-content {
+  min-height: 300px;
+}
+
+.tab-content h2 {
+  margin-bottom: 20px;
+  color: var(--light);
+}
+
+.profile-info{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--light);
+  
+}
