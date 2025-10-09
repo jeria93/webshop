@@ -1,0 +1,61 @@
+/* Container för alla produkter */
+.parent {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;       
+          /* mellanrum mellan rader */
+}
+
+
+.product-item {
+  display: flex;
+  flex-direction: row;     
+  gap: 8px;
+  padding: 8px;
+ /* border: 1px solid rgb(249, 178, 27);*/
+  align-items: center;
+
+}
+
+.div-img img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.div-description {
+    flex: 1;               
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(14, 152, 185);
+}
+
+
+.div-quantity {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+color: rgb(14, 152, 185);
+font-size:0.1rem;
+}
+
+.p-quantity {
+  font-size: 1.0rem;
+  color: black;
+}
+
+.text-heading{
+   background-color: rgba(13, 14, 73, 0.5); /* halvtransparent mörk bakgrund */
+  color: white;
+  padding: 0.2rem 0.5rem; /* lite utrymme runt texten */
+  border-radius: 4px;
+}
+
+.text-content{
+   background-color: rgba(13, 14, 73, 0.5); /* halvtransparent mörk bakgrund */
+  color: white;
+  padding: 0.2rem 0.5rem; /* lite utrymme runt texten */
+  border-radius: 4px;
+}
