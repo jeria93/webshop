@@ -1,5 +1,4 @@
 :root {
-/* --primary: #0f172a; */
   --secondary: #1e293b;
   --accent: #06b6d4;
   --light: #f8fafc;
@@ -8,16 +7,34 @@
 }
 
 .account-container {
-  padding: 40px 20px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  
+
+  width: 90%;
+  max-width: 600px;
+  min-width: 350px; /* Lägre min-width för mobil */
+  
+  display: flex;
+  flex-direction: column;
 }
 
+
+
+/* MARK: Header 
+*/
 .account-header {
   text-align: center;
   margin-bottom: 40px;
 }
 
 .account-header h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 10px;
   background: linear-gradient(90deg, var(--accent), #22d3ee);
   -webkit-background-clip: text;
@@ -27,22 +44,44 @@
 
 .account-header p {
   color: #a0a0a0;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
 }
 
+/* Kortet inuti containern */
 .account-card {
-  background-color: var(--secondary);
+  background: rgba(30, 41, 59, 0.8);
   border-radius: 16px;
-  padding: 35px;
+  padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Media query för större skärmar */
+@media (min-width: 768px) {
+  .account-container {
+    max-width: 700px; /* Bredare på tablet/desktop */
+    padding: 50px;
+  }
+  
+  .account-card {
+    padding: 50px;
+  }
+}
+
+.account-card p {
+  color: #a0a0a0;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 
+/* MARK: Form 
+*/
 .form-group {
   margin-bottom: 20px;
 }
@@ -73,9 +112,10 @@
 }
 
 .divider {
-  margin: 10px 0;
+  margin: 15px 0;
   text-align: center;
   font-weight: 500;
+  color: #a0a0a0;
 }
 
 /* MARK: -Buttons 
@@ -84,7 +124,7 @@
     display: inline-block;
     padding: 14px 24px;
     background: linear-gradient(135deg, var(--accent), #0891b2);
-    color: white;
+    color: var(--light);
     border: none;
     border-radius: 10px;
     font-size: 16px;
@@ -93,7 +133,7 @@
     transition: all 0.3s;
     text-align: center;
     width: 100%;
-    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+    
 }
 
 .btn1:hover {
@@ -114,7 +154,7 @@
     transition: all 0.3s;
     text-align: center;
     width: 100%;
-    box-shadow: 0 4px 15px rgba(45, 55, 72, 0.3);
+    box-shadow: 0 4px 15px rgba(50, 65, 91, 0.3);
 }
 
 .btn2:hover {
@@ -137,4 +177,199 @@
 .account-footer a:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* MARK: Tabs 
+*/
+.account-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);;
+  padding-bottom: 15px;
+  justify-content: center;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #3394fb);
+  color: var(--light);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.tab-button:hover {
+  background: linear-gradient(135deg, #3394fb, var(--accent));
+}
+
+.tab-button.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent));
+    border: #ffffff 1px solid ;
+    border-style:inset;
+    
+}
+
+.account-content {
+  min-height: 300px;
+}
+
+.tab-content h2 {
+  margin-bottom: 20px;
+  color: var(--light);
+  text-align: center;
+  text-decoration: underline var(--accent);
+}
+
+.profile-info{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--light);
+  
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid var(--light); 
+}
+
+.info-item-label {
+  font-weight: bold;
+  color: var(--light);
+}
+
+
+/* MARK: Movie-grid 
+*/
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  
+}
+
+@media (max-width: 768px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+}
+
+.movie-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.movie-card img {
+  width: 70%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.movie-card h3 {
+  margin: 0 0 10px 0;
+  color: var(--light);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.movie-card p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: var(--light);
+}
+
+.movie-card .expires {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* MARK: Mov Btn 
+*/
+.watch-btn, .rent-btn, .purchase-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.watch-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: var(--light);
+}
+
+.watch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.rent-btn {
+  background: linear-gradient(135deg, #007bff, #0dcaf0);
+  color: white;
+}
+
+.rent-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.purchase-btn {
+  background: linear-gradient(135deg, #6c757d, #adb5bd);
+  color: white;
+}
+
+.purchase-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* MARK: Logout btn 
+*/
+.account-actions {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #dc3545, #ff3d50);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
 }
