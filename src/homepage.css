@@ -62,12 +62,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
   background:rgba(0, 0, 0, 0.6);          
   border-radius: 8px;
   border: 1px solid white;
   overflow: hidden;
   
+}
+.newsCard__item article:hover{
+  border: 1px solid  rgb(143, 175, 212);
 }
 .newsCard img,
 .newsCard__placeholder {
