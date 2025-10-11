@@ -6,6 +6,11 @@ export function posterUrl(path) {
   return path ? IMG + path : "";
 }
 
+/**
+ * Search movies by text using TMDb Search endpoint.
+ * API: GET /search/movie
+ * @see https://developer.themoviedb.org/reference/search-movie
+ */
 export function queryString(params) {
   return new URLSearchParams(params).toString();
 }
