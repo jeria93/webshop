@@ -1,13 +1,102 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { getMovieById } from "../features/api";
+import { formatSEK, priceFromId } from "../utils/format";
 import "./movieDetails.css";
+import MoviePoster from "../components/MoviePoster";
 
-const movieDetails = () => {
+export default function MovieDetails() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(false);
+
+    getMovieById(id)
+      .then((movie) => {
+        if (!cancelled) setMovie(movie);
+      })
+      .catch(() => {
+        if (!cancelled) setError(true);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="details">
+        <header className="details__header">
+          <Link className="details__back" to="/">
+            Tillbaka
+          </Link>
+          <h1 className="details__title">Laddar...</h1>
+        </header>
+      </div>
+    );
+  }
+
+  if (error || !movie) {
+    return (
+      <div className="details">
+        <header className="details__header">
+          <Link className="details__back" to="/">
+            Tillbaka
+          </Link>
+          <h1 className="details__title">Ingen filminformation</h1>
+        </header>
+        <p className="details__empty">Prova att gå dit via sökningen igen</p>
+      </div>
+    );
+  }
+
+  const title = movie.title ?? movie.original_title ?? "Ingen titel funnen";
+  const year = movie.release_date?.slice(0, 4) ?? "—";
+  const year1 = movie.release_date?.slice()
+  const displayPrice = formatSEK(priceFromId(Number(movie.id)));
+  const rating = Number.isFinite(movie?.vote_average) ? movie.vote_average.toFixed(1) : "—";
+  
   return (
-    <div>
-      movieDetails
+    <div className="details">
+      <header className="details__header">
+        <Link className="details__back" to="/">
+          Tillbaka
+        </Link>
+        <h1 className="details__title">{title}</h1>
+      </header>
 
+      <section className="details__main">
+        <MoviePoster
+          path={movie.poster_path}
+          alt={title}
+          width={160}
+          height={240}
+        />
+
+        <div className="details__info">
+          <div className="details__meta">
+            <span className="details__meta-item">År: {year}</span>
+            <span className="details__meta-item">Betyg: {rating}</span>
+          </div>
+
+          <p className="details__overview">
+            {movie.overview || "Ingen beskrivning tillgänglig"}
+          </p>
+
+          <div className="details__price">
+            <span>Pris</span>
+            <strong>{displayPrice}</strong>
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-
-export default movieDetails;
+}

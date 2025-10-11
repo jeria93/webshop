@@ -75,7 +75,6 @@ export async function getRecentlyReleasedMovies({
     });
 
   try {
-
     const response = await fetch(url);
     if (!response.ok) throw new Error(`TMDb ${response.status}`);
     const json = await response.json();
@@ -94,3 +93,25 @@ export async function getRecentlyReleasedMovies({
   }
 }
 
+/**
+ * Fetch TMDB Movie Details for a given ID
+ * API: GET /movie/{movie_id}
+ * @see https://developer.themoviedb.org/reference/movie-details
+ */
+export async function getMovieById(id, { language = "sv-SE" } = {}) {
+  const movieId = Number(id);
+  if (!Number.isFinite(movieId)) return null;
+
+  const url =
+    `${BASE}/movie/${movieId}?` + queryString({ api_key: API_KEY, language });
+  console.log("getMovieById ->", url);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`TMDb ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("getMovieById failed:", error);
+    return null;
+  }
+}
