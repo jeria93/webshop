@@ -1,5 +1,5 @@
 import './cartItem.css';
-import img from "../../assets/batman.jpg";
+// import img from "../../assets/batman.jpg";
 import { useState } from 'react';
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";

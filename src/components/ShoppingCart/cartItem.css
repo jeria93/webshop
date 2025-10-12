@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 1px;       
-          /* mellanrum mellan rader */
+  /* mellanrum mellan rader */
 }
 
 
@@ -12,24 +12,40 @@
   flex-direction: row;     
   gap: 8px;
   padding: 8px;
- /* border: 1px solid rgb(249, 178, 27);*/
+  border-bottom: 1px solid rgba(27, 82, 249, 0.3);
   align-items: center;
+}
 
+.product-item:hover {
+  background-color: rgba(27, 153, 249, 0.05);
+  border-left: 3px solid var(--accent);
+}
+
+.product-item:last-child {
+  border-bottom: none;
 }
 
 .div-img img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 100px;
   object-fit: cover;
   border-radius: 6px;
+  border: 2px solid rgba(27, 142, 249, 0.3);
+  transition: all 0.2s ease;
 }
 
 .div-description {
-    flex: 1;               
+  flex: 1;               
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: rgb(14, 152, 185);
+}
+
+.div-description span {
+  font-size: 0.85rem;
+  color: rgb(27, 193, 249);
+  font-weight: 500;
 }
 
 
@@ -41,9 +57,16 @@ color: rgb(14, 152, 185);
 font-size:0.1rem;
 }
 
+.div-quantity span {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+  padding: 2px;
+}
+
 .p-quantity {
   font-size: 1.0rem;
-  color: black;
+  color: var(--light);
 }
 
 .text-heading{
@@ -51,11 +74,5 @@ font-size:0.1rem;
   color: white;
   padding: 0.2rem 0.5rem; /* lite utrymme runt texten */
   border-radius: 4px;
-}
-
-.text-content{
-   background-color: rgba(13, 14, 73, 0.5); /* halvtransparent mörk bakgrund */
-  color: white;
-  padding: 0.2rem 0.5rem; /* lite utrymme runt texten */
-  border-radius: 4px;
+  font-size: 0.95rem;
 }

@@ -1,8 +1,8 @@
+import React from 'react';
 import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
-import background from '../../assets/background.jpg'
 import { IoCloseCircle } from "react-icons/io5";
 
 
@@ -81,6 +81,22 @@ const sampleData = [
 //Läsa in produkterna via Redux
 export default function ShoppingCart({visibility, onClose}){
 
+  React.useEffect(() => {
+    if (visibility) {
+      // Förhindrar scroll bakom modal
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Återställer scroll när modal stängs
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Säkerställer att scroll återställs
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [visibility]);
+
+
 //över 500 kronor och fri frakt
 const isFreeShiping = () => {
   let totalPrice = 500;  //ändras till 0 
@@ -104,10 +120,19 @@ const isFreeShiping = () => {
 
 
 return(
- <div className='modal' style={{display: visibility? "block": "none"}}>
+ <div className='modal' style={{display: visibility? "block": "none"}}
+        
+        onClick={(e) => {
+     // Stänger kundkorg om man klickar utanfor
+     if (e.target === e.currentTarget) {
+       onClose();
+     }
+   }}
+ >
+        
         <div  className='cart'
                style={{
-    backgroundImage: `url(${background})`,
+    backgroundImage: `url(${''})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}

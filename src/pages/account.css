@@ -1,13 +1,7 @@
-:root {
-  --secondary: #1e293b;
-  --accent: #06b6d4;
-  --light: #f8fafc;
-  --dark: #020617;
-  --gray: #334155;
-}
+
 
 .account-container {
-padding: 20px 15px;
+  padding: 20px 15px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);

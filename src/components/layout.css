@@ -16,6 +16,7 @@
    top: 0;
   background: rgba(0,0,0,.6);
   /* margin-inline: auto; */
+  z-index: 1000;
 }
 
 .navbar a {
