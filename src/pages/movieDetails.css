@@ -1,0 +1,13 @@
+.details__hero {
+  position: relative;
+  margin: 12px 0 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: black;
+}
+
+.hero__placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: dimgray;
+}

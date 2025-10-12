@@ -1,10 +1,10 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE = "https://api.themoviedb.org/3";
-const IMG = "https://image.tmdb.org/t/p/w500";
+const IMG_BASE = "https://image.tmdb.org/t/p";
 
-export function posterUrl(path) {
-  return path ? IMG + path : "";
-}
+export const posterUrl   = (path, size = "w342")  => path ? `${IMG_BASE}/${size}${path}` : "";
+export const backdropUrl = (path, size = "w1280") => path ? `${IMG_BASE}/${size}${path}` : "";
+
 
 /**
  * Search movies by text using TMDb Search endpoint.
