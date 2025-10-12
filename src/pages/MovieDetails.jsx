@@ -17,8 +17,8 @@ export default function MovieDetails() {
     setError(false);
 
     getMovieById(id)
-      .then((movie) => {
-        if (!cancelled) setMovie(movie);
+      .then((m) => {
+        if (!cancelled) setMovie(m);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -26,6 +26,7 @@ export default function MovieDetails() {
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
+
     return () => {
       cancelled = true;
     };
@@ -35,11 +36,15 @@ export default function MovieDetails() {
     return (
       <div className="details">
         <header className="details__header">
+          <div className="details__container">
+            <h1 className="details__title">Laddar...</h1>
+          </div>
+        </header>
+        <footer className="details__footer">
           <Link className="details__back" to="/">
             Tillbaka
           </Link>
-          <h1 className="details__title">Laddar...</h1>
-        </header>
+        </footer>
       </div>
     );
   }
@@ -48,12 +53,18 @@ export default function MovieDetails() {
     return (
       <div className="details">
         <header className="details__header">
+          <div className="details__container">
+            <h1 className="details__title">Ingen filminformation</h1>
+          </div>
+        </header>
+        <div className="details__container">
+          <p className="details__empty">Prova att gå dit via sökningen igen</p>
+        </div>
+        <footer className="details__footer">
           <Link className="details__back" to="/">
             Tillbaka
           </Link>
-          <h1 className="details__title">Ingen filminformation</h1>
-        </header>
-        <p className="details__empty">Prova att gå dit via sökningen igen</p>
+        </footer>
       </div>
     );
   }
@@ -67,31 +78,46 @@ export default function MovieDetails() {
   return (
     <div className="details">
       <header className="details__header">
-        <Link className="details__back" to="/">
-          Tillbaka
-        </Link>
-        <h1 className="details__title">{title}</h1>
+        <div className="details__container">
+          <h1 className="details__title">{title}</h1>
+        </div>
       </header>
 
       <section className="details__hero">
-        <MovieBackdrop path={bannerImagePath} alt={title} />
+        <div className="details__container">
+          <MovieBackdrop path={bannerImagePath} alt={title} />
+        </div>
       </section>
 
       <section className="details__main">
-        <div className="details__info">
-          <div className="details__meta">
-            <span className="details__meta-item">År: {year}</span>
-            <span className="details__meta-item">Betyg: {rating}</span>
-          </div>
-          <p className="details__overview">
-            {movie.overview || "Ingen beskrivning tillgänglig"}
-          </p>
-          <div className="details__price">
-            <span>Pris</span>
-            <strong>{displayPrice}</strong>
+        <div className="details__container">
+          <div className="details__info">
+            <div className="details__meta">
+              <span className="details__meta-item">År: {year}</span>
+              <span className="details__meta-item">Betyg: {rating}</span>
+            </div>
+
+            <p className="details__overview">
+              {movie.overview || "Ingen beskrivning tillgänglig"}
+            </p>
+
+            <div className="details__price">
+              <span>Pris</span>
+              <strong>{displayPrice}</strong>
+            </div>
           </div>
         </div>
       </section>
+
+      <footer className="details__footer">
+        <Link className="details__back" to="/">
+          Tillbaka
+        </Link>
+      </footer>
     </div>
   );
 }
+
+// priser för köpa, hyra och affisch
+// mera meta data
+// extrahera kod till egna komponentner?
