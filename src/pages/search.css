@@ -2,6 +2,8 @@
   padding: 16px;
   display: grid;
   gap: 12px;
+  width: 85vw;
+  max-width: 550px;
 }
 
 /* Header */
@@ -108,4 +110,92 @@
 
 .empty {
   color: white;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .search {
+    padding: 12px;
+  }
+  
+  .search__title {
+    font-size: 16px;
+  }
+  
+  .search__form {
+    gap: 6px;
+  }
+  
+  .search__input {
+    padding: 6px 8px;
+    font-size: 16px;
+  }
+  
+  .search__button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  .search__item {
+    grid-template-columns: auto 1fr auto auto;
+    gap: 8px;
+    padding: 8px 6px;
+  }
+  
+  .search__poster {
+    gap: 2px;
+  }
+  
+  .search__year {
+    font-size: 10px;
+  }
+  
+  .search__info {
+    font-size: 14px;
+  }
+  
+  .search__prices {
+    font-size: 13px;
+    gap: 2px;
+  }
+
+   .search__chevron {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search {
+    padding: 8px;
+  }
+  
+  .search__item {
+    grid-template-columns: 50px 1fr auto auto;
+    gap: 6px;
+    padding: 6px;
+  }
+  
+  .search__poster img {
+    max-width: 50px;
+  }
+  
+  .search__info {
+    font-size: 13px;
+  }
+  
+  .search__info > * {
+    line-height: 1.3;
+  }
+  
+  .search__prices {
+    font-size: 12px;
+  }
+  
+  .search__year {
+    font-size: 9px;
+  }
+
+  .search__chevron {
+    font-size: 18px;
+  }
 }
