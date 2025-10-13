@@ -34,10 +34,11 @@ export default function Layout() {
         <Link className="linkIcon" to="/wishList" onClick={closeMenu}><Star/>Favoriter</Link>
         
         {/*Logik för varukorgen */}
-        <Link  className="linkIcon" onClick={() => {
-          SetShowShoppingCart(true);
-          closeMenu();
+        <Link  className="linkIcon" to="/shoppingCart" onClick={() => {
+           SetShowShoppingCart(true);
+           closeMenu();
         }} ><ShoppingBasket/>Varukorg</Link>
+        {/* <Link className="linkIcon" to="/shoppingCart" onClick={() => {SetShowShoppingCart, closeMenu}}> <ShoppingBasket/>Varukorg</Link> */}
 
 
         <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>

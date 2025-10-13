@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { store } from "./features/store.js";
 import Search from "./pages/Search.jsx";
 import HomePage from "./HomePage.jsx"
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart.jsx";
 
 const router = createHashRouter([
   {
@@ -21,6 +22,7 @@ const router = createHashRouter([
       { path: "/wishList", element: <WishList /> },
       { path: "/account", element: <Account /> },
       { path: "/movieDetails/:id", element: <MovieDetails /> },
+      {path:"/shoppingCart", element:<ShoppingCart/>},
     ],
   },
 ]);
