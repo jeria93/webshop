@@ -25,7 +25,7 @@ export default function Search() {
   return (
     <div className="search">
       <header className="search__header">
-        <h1 className="search__title">Search</h1>
+        {/* <h1 className="search__title">Search</h1> */}
       </header>
 
       <form className="search__form" onSubmit={handleSubmit}>
@@ -33,18 +33,18 @@ export default function Search() {
           className="search__input"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search movie…"
+          placeholder="Sök filmer..."
         />
         <button
           className="search__button"
           type="submit"
           disabled={!query.trim()}
         >
-          Search
+          Sök
         </button>
       </form>
 
-      {!hasSearched && <EmptyState title="Sök efter filmer" />}
+      {!hasSearched && <EmptyState title="Sök efter filmer" className="empty" />}
 
       {hasSearched && movies.length === 0 && (
         <EmptyState title={`Inga resultat för "${query}"`} />

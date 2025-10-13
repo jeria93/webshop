@@ -105,3 +105,7 @@
   border-color: rgb(143, 175, 212);
   cursor: pointer;
 }
+
+.empty {
+  color: white;
+}
