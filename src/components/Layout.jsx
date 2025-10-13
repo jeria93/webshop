@@ -33,12 +33,12 @@ export default function Layout() {
         <Link className="linkIcon" to="/" onClick={closeMenu}><House/>Hem</Link>
         <Link className="linkIcon" to="/wishList" onClick={closeMenu}><Star/>Favoriter</Link>
         
-        {/*Logik för varukorgen */}
-        <Link  className="linkIcon" to="/shoppingCart" onClick={() => {
+        {/*Logik för varukorgen*/}
+        <button className="linkIcon as-link" onClick={() => {
            SetShowShoppingCart(true);
            closeMenu();
-        }} ><ShoppingBasket/>Varukorg</Link>
-        {/* <Link className="linkIcon" to="/shoppingCart" onClick={() => {SetShowShoppingCart, closeMenu}}> <ShoppingBasket/>Varukorg</Link> */}
+        }}><ShoppingBasket/>Varukorg</button>
+        
 
 
         <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>
