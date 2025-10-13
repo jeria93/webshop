@@ -1,0 +1,103 @@
+.details {
+  display: grid;
+  gap: 16px;
+  padding-inline: 24px;
+}
+
+.details__container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.details__header {
+  margin-top: 12px;
+}
+
+.details__title {
+  margin: 0;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
+  color: white;
+}
+
+.details__hero {
+  margin: 12px 0 16px;
+}
+
+.hero__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.hero__placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: dimgray;
+  border-radius: 20px;
+}
+
+.details__main {
+  padding-bottom: 24px;
+}
+
+/* Card */
+.details__info {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: gainsboro;
+  text-align: left;
+}
+
+.details__meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.details__overview {
+  line-height: 1.6;
+  margin: 10px 0 16px;
+  text-wrap: pretty;
+}
+
+.details__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.details__empty {
+  opacity: 0.9;
+  margin-top: 8px;
+  text-align: left;
+  color: gainsboro;
+}
+
+.details__footer {
+  display: grid;
+  place-items: center;
+  padding: 8px 0 24px;
+}
+
+.details__back {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
