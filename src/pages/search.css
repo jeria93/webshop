@@ -47,6 +47,13 @@
   padding: 8px;
 }
 
+/* Make the whole row clickable while keeping layout */
+.search__link {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Left: poster + year */
 .search__poster {
   display: grid;

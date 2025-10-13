@@ -3,6 +3,7 @@ import "./search.css";
 import MoviePoster from "../components/MoviePoster";
 import { useState } from "react";
 import EmptyState from "../components/EmptyState";
+import { Link } from "react-router-dom";
 import {
   formatSEK,
   rentPriceFromId,
@@ -59,25 +60,27 @@ export default function Search() {
 
             return (
               <li key={movie.id} className="search__item">
-                <div className="search__poster">
-                  <MoviePoster
-                    path={movie.poster_path}
-                    width={60}
-                    height={90}
-                  />
-                  <div className="search__year">{year}</div>
-                </div>
+                <Link className="search__link" to={`/movieDetails/${movie.id}`}>
+                  <div className="search__poster">
+                    <MoviePoster
+                      path={movie.poster_path}
+                      width={60}
+                      height={90}
+                    />
+                    <div className="search__year">{year}</div>
+                  </div>
 
-                <div className="search__info">
-                  <strong>{movie.title ?? movie.original_title}</strong>
-                </div>
+                  <div className="search__info">
+                    <strong>{movie.title ?? movie.original_title}</strong>
+                  </div>
 
-                <div className="search__prices">
-                  <div>Hyr: {formatSEK(rent)}</div>
-                  <div>Köp: {formatSEK(buy)}</div>
-                  <div>Affisch: {formatSEK(poster)}</div>
-                </div>
-                <div className="search__chevron">›</div>
+                  <div className="search__prices">
+                    <div>Hyr: {formatSEK(rent)}</div>
+                    <div>Köp: {formatSEK(buy)}</div>
+                    <div>Affisch: {formatSEK(poster)}</div>
+                  </div>
+                  <div className="search__chevron">›</div>
+                </Link>
               </li>
             );
           })}
