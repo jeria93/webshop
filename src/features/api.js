@@ -1,11 +1,16 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE = "https://api.themoviedb.org/3";
-const IMG = "https://image.tmdb.org/t/p/w500";
+const IMG_BASE = "https://image.tmdb.org/t/p";
 
-export function posterUrl(path) {
-  return path ? IMG + path : "";
-}
+export const posterUrl   = (path, size = "w342")  => path ? `${IMG_BASE}/${size}${path}` : "";
+export const backdropUrl = (path, size = "w1280") => path ? `${IMG_BASE}/${size}${path}` : "";
 
+
+/**
+ * Search movies by text using TMDb Search endpoint.
+ * API: GET /search/movie
+ * @see https://developer.themoviedb.org/reference/search-movie
+ */
 export function queryString(params) {
   return new URLSearchParams(params).toString();
 }
@@ -75,7 +80,6 @@ export async function getRecentlyReleasedMovies({
     });
 
   try {
-
     const response = await fetch(url);
     if (!response.ok) throw new Error(`TMDb ${response.status}`);
     const json = await response.json();
@@ -94,3 +98,25 @@ export async function getRecentlyReleasedMovies({
   }
 }
 
+/**
+ * Fetch TMDB Movie Details for a given ID
+ * API: GET /movie/{movie_id}
+ * @see https://developer.themoviedb.org/reference/movie-details
+ */
+export async function getMovieById(id, { language = "sv-SE" } = {}) {
+  const movieId = Number(id);
+  if (!Number.isFinite(movieId)) return null;
+
+  const url =
+    `${BASE}/movie/${movieId}?` + queryString({ api_key: API_KEY, language });
+  console.log("getMovieById ->", url);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`TMDb ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("getMovieById failed:", error);
+    return null;
+  }
+}
