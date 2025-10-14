@@ -4,6 +4,7 @@ import { getMovieById } from "../features/api";
 import { formatSEK, priceFromId } from "../utils/format";
 import "./movieDetails.css";
 import MovieBackdrop from "../components/MovieBackdrop";
+import MovieMeta from "../components/MovieMeta";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -12,24 +13,13 @@ export default function MovieDetails() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
     setLoading(true);
     setError(false);
 
     getMovieById(id)
-      .then((m) => {
-        if (!cancelled) setMovie(m);
-      })
-      .catch(() => {
-        if (!cancelled) setError(true);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
+      .then(setMovie)
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) {
@@ -70,10 +60,8 @@ export default function MovieDetails() {
   }
 
   const title = movie.title ?? movie.original_title ?? "Ingen titel funnen";
-  const year = movie.release_date?.slice(0, 4) ?? "—";
-  const displayPrice = formatSEK(priceFromId(Number(movie.id)));
-  const rating = Number.isFinite(movie?.vote_average) ? movie.vote_average.toFixed(1): "—";
   const bannerImagePath = movie.backdrop_path || movie.poster_path;
+  const displayPrice = formatSEK(priceFromId(Number(movie.id)));
 
   return (
     <div className="details">
@@ -92,10 +80,7 @@ export default function MovieDetails() {
       <section className="details__main">
         <div className="details__container">
           <div className="details__info">
-            <div className="details__meta">
-              <span className="details__meta-item">År: {year}</span>
-              <span className="details__meta-item">Betyg: {rating}</span>
-            </div>
+            <MovieMeta movie={movie} castCount={3} />
 
             <p className="details__overview">
               {movie.overview || "Ingen beskrivning tillgänglig"}
@@ -119,5 +104,6 @@ export default function MovieDetails() {
 }
 
 // priser för köpa, hyra och affisch
-// mera meta data
 // extrahera kod till egna komponentner?
+// lägga till css för MovieMeta.jsx
+// navigera genom search till details
