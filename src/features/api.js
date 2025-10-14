@@ -48,6 +48,7 @@ export async function searchMovies(queryInput) {
   }
 }
 // function to get new Recently released and popular movies to put in Homepage
+// and to get movies genre to Category
 export async function getRecentlyReleasedMovies({
   daysBack = 60,
   page = 1,
@@ -55,7 +56,9 @@ export async function getRecentlyReleasedMovies({
   language = "sv-SE",
   releaseTypes = "2|3|4",
   minVotes = 10,
-} = {}) {
+} = {},
+extraParams = {}
+) {
   const today = new Date();
   const from = new Date(today);
   from.setDate(from.getDate() - daysBack);
@@ -63,21 +66,29 @@ export async function getRecentlyReleasedMovies({
   const toStr = today.toISOString().slice(0, 10); // "YYYY-MM-DD"
   const fromStr = from.toISOString().slice(0, 10); // "YYYY-MM-DD"
 
-  const url =
-    `${BASE}/discover/movie?` +
-    queryString({
-      api_key: API_KEY,
-      language,
-      region,
-      sort_by: "popularity.desc",
-      "release_date.gte": fromStr,
-      "release_date.lte": toStr,
-      with_release_type: releaseTypes,
-      include_adult: false,
-      include_video: false,
-      "vote_count.gte": minVotes,
-      page,
-    });
+   const base = {
+    api_key: API_KEY,
+    language,
+    region,
+    sort_by: "popularity.desc",
+    include_adult: false,
+    include_video: false,
+    "vote_count.gte": minVotes,
+    page,
+  };
+      const recentFilters = extraParams.with_genres
+    ? {}
+    : {
+        "release_date.gte": fromStr,
+        "release_date.lte": toStr,
+        with_release_type: releaseTypes,
+      };
+        const url = `${BASE}/discover/movie?` + queryString({
+    ...base,
+    ...recentFilters,
+    ...extraParams,
+  });
+
 
   try {
     const response = await fetch(url);
@@ -91,6 +102,7 @@ export async function getRecentlyReleasedMovies({
       release_date: m.release_date || "",
       poster_path: m.poster_path || null,
       vote_average: typeof m.vote_average === "number" ? m.vote_average : 0,
+      overview: m.overview || "",
     }));
   } catch (err) {
     console.error("getRecentlyReleasedMovies failed:", err);
@@ -120,3 +132,13 @@ export async function getMovieById(id, { language = "sv-SE" } = {}) {
     return null;
   }
 }
+
+
+export const GENRE_IDS = {
+   Komedi: 35,
+   Skräck: 27,
+   Action: 28,
+   Drama: 18,
+   Romantik: 10749,
+};
+
