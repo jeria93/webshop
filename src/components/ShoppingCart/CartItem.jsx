@@ -1,6 +1,6 @@
 import './cartItem.css';
-// import img from "../../assets/batman.jpg";
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeFromCart, addQuantity,subQuantity } from '../../features/cartSlice';
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
@@ -26,18 +26,19 @@ function getDeliveryDays() {
 }
 
 export default function CartItem({ items }) {
-  const [quantity, setQuantity] = useState(items.map(item => item.quantity));
+ 
+  const dispatch = useDispatch();
 
   function handleIncClick(index) {
-    setQuantity(prev =>
-      prev.map((q, i) => (i === index ? q + 1 : q))
-    );
+    
   }
 
   function handleDecClick(index) {
-    setQuantity(prev =>
+   
+   
+    /* setQuantity(prev =>
       prev.map((q, i) => (i === index ? q - 1 : q))
-    );
+    ); */
   }
 
   return (
@@ -52,17 +53,17 @@ export default function CartItem({ items }) {
             <h4 className='text-heading'>{item.title}</h4>
                 
                    {/* <span>pris: {item.price} SEK </span> */}
-                    <span>Totalt: {item.price * quantity[index]} SEK</span>
+                    <span>Totalt: {item.price } SEK</span>
                     {/* getDeliveryDays() */}
                
           </div>
 
           <div className='div-quantity'>
-            <span onClick={() => handleIncClick(index)}>
+            <span onClick={() => dispatch(addQuantity(item.id))}>
               <IoMdAddCircleOutline size={32} />
             </span>
-            <p className='p-quantity'>{quantity[index]}</p>
-            <span onClick={() => handleDecClick(index)}>
+            <p className='p-quantity'>{item.quantity}</p>
+            <span onClick={() => dispatch(subQuantity(item.id))}>
               <MdOutlineRemoveCircleOutline size={32} />
             </span>
           </div>

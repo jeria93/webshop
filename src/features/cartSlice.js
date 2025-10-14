@@ -1,7 +1,80 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { priceFromId } from "../utils/format.js";
+import testImg from '../assets/batman.jpg'  //ta bort när det fungerar med alla knappar
 
-const initialState = { items: [] };
+/*Här har jag lagt till lite test data, ta bort när vi får det att fungera med köp, hyr mm. knappar*/
+const sampleData = [
+  {
+    title: "Batman nr23",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "POSTER",
+    price: 1,
+    id: 1
+  },
+  {
+    title: "Superman nr5",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "MOVIE",
+    price: 1,
+    id: 2
+  },
+  {
+    title: "Spider-Man nr12",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "RENTAL",
+    price: 1,
+    id: 3
+  },
+  {
+    title: "Wonder Woman nr7",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "POSTER",
+    price: 1,
+    id: 4
+  },
+  {
+    title: "Iron Man nr10",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "MOVIE",
+    price: 1,
+    id: 5
+  },
+  {
+    title: "Thor nr8",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "RENTAL",
+    price: 1,
+    id: 6
+  },
+  {
+    title: "Hulk nr15",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "POSTER",
+    price: 1,
+    id: 7
+
+  },
+  {
+    title: "Black Widow nr3",
+    quantity: 1,
+    poster_logo: testImg,
+    type: "MOVIE",
+    price: 490,
+    id: 8
+
+  }
+];
+
+const initialState = { 
+  items: sampleData,        //Ändra till items: [], när logiken med knappar
+};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -32,6 +105,14 @@ const cartSlice = createSlice({
         };
       },
     },
+    addQuantity: (state, action) => {
+      const existingItem = state.items.find((item) => item.id === action.payload)
+      existingItem.quantity += 1;
+    },
+    subQuantity: (state, action) => {
+      const existingItem = state.items.find((item) => item.id === action.payload)
+      existingItem.quantity -= 1;
+    },
     removeFromCart: {
       reducer(state, action) {
         const id = action.payload;
@@ -47,7 +128,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, addQuantity, subQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
 
 /* Selectors */

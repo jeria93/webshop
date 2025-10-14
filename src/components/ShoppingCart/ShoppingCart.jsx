@@ -1,12 +1,13 @@
 import React from 'react';
-import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
 import { IoCloseCircle } from "react-icons/io5";
+import { selectCartItems, selectCartCount , selectCartTotal} from '../../features/cartSlice';
+import { useSelector } from 'react-redux';
 
 
-const sampleData = [
+/*const sampleData = [
   {
     title: "Batman nr23",
     quantity: 1,
@@ -69,17 +70,21 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 1,
+    price: 490,
     id: 8
 
   }
 ];
-
+*/
 
 
 
 //Läsa in produkterna via Redux
 export default function ShoppingCart({visibility, onClose}){
+
+  const cartItems = useSelector(selectCartItems) //varukorgen
+  const cartCount = useSelector(selectCartCount) //totala antalet varor i korgen
+  const cartTotal = useSelector(selectCartTotal) //total priset i varukorgen 
 
   React.useEffect(() => {
     if (visibility) {
@@ -99,13 +104,10 @@ export default function ShoppingCart({visibility, onClose}){
 
 //över 500 kronor och fri frakt
 const isFreeShiping = () => {
-  let totalPrice = 500;  //ändras till 0 
+  let totalPrice = cartTotal;  //ändras till 0 
   
-  sampleData.map((item) => {
-      totalPrice = totalPrice + item.price;
-      console.log("total: "+ totalPrice + " item: " + item.price);
-  });
-      if (totalPrice > 500) {
+  
+      if (totalPrice >= 500) {
     return (
       <p style={{ color: "green",  gap: "8px" }}>
         <FaCheck color="green" />
@@ -114,7 +116,7 @@ const isFreeShiping = () => {
     );
   }
 
-  return ( <p> {500 - totalPrice} Kvar till fri frakt (handla för mer än 500 kr) </p>)  ;
+  return ( <p> {500 - totalPrice} kronor kvar till fri frakt (handla för mer än 500 kr) </p>)  ;
 
  }
 
@@ -152,12 +154,12 @@ return(
   <div className="div-display-area"> 
 
         {/* LOGIK för att visa en vara*/}
-        <CartItem items={sampleData}></CartItem>
+        <CartItem items={cartItems}></CartItem>
 
   </div>
  
   <div className="payment"> 
-  <h4>Total: {sampleData.reduce((prev, curr) => prev + curr.quantity * curr.price, 0)} SEK </h4>
+  <h4>Total: {cartTotal} SEK </h4>
   <p><button className='btn-payment'>Betalning</button></p>
   </div>
 </div>
