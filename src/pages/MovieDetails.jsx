@@ -30,11 +30,11 @@ export default function MovieDetails() {
             <h1 className="details__title">Laddar...</h1>
           </div>
         </header>
-        <footer className="details__footer">
+        {/* <footer className="details__footer">
           <Link className="details__back" to="/">
             Tillbaka
           </Link>
-        </footer>
+        </footer> */}
       </div>
     );
   }

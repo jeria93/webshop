@@ -10,18 +10,18 @@
 }
 
 .details__header {
-  margin-top: 12px;
+  margin: 0 0 16px 0;
 }
 
 .details__title {
   margin: 0;
   font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 700;
-  color: white;
+  color: var(--light);
 }
 
 .details__hero {
-  margin: 12px 0 16px;
+  margin: 0 0 20px 0;
 }
 
 .hero__img {
@@ -77,6 +77,16 @@
   align-items: baseline;
   gap: 8px;
   font-size: 15px;
+
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+ */
 }
 
 .details__empty {
