@@ -1,8 +1,9 @@
 import './cartItem.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, addQuantity,subQuantity } from '../../features/cartSlice';
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import MoviePoster from '../MoviePoster';
 
 // slumpa lite leverans alternativ
 function getDeliveryDays() {
@@ -29,32 +30,24 @@ export default function CartItem({ items }) {
  
   const dispatch = useDispatch();
 
-  function handleIncClick(index) {
-    
-  }
-
-  function handleDecClick(index) {
-   
-   
-    /* setQuantity(prev =>
-      prev.map((q, i) => (i === index ? q - 1 : q))
-    ); */
-  }
+  
 
   return (
     <div className='parent'>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <div className='product-item' key={item.id}>
           <div className='div-img'>
-            <img src={item.poster_logo} alt="bild" />
+            {/*<img src={item.poster_logo} alt="bild" /> */}
+            <MoviePoster path={item.poster_path} />
+            {console.log(item.id)}
           </div>
 
           <div className='div-description'>
             <h4 className='text-heading'>{item.title}</h4>
                 
                    {/* <span>pris: {item.price} SEK </span> */}
-                    <span>Totalt: {item.price } SEK</span>
-                    {/* getDeliveryDays() */}
+                    <span>Totalt: {item.quantity * item.price} SEK</span>
+                    { /*getDeliveryDays() */ }
                
           </div>
 

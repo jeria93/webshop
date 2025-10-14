@@ -83,7 +83,6 @@ import { useSelector } from 'react-redux';
 export default function ShoppingCart({visibility, onClose}){
 
   const cartItems = useSelector(selectCartItems) //varukorgen
-  const cartCount = useSelector(selectCartCount) //totala antalet varor i korgen
   const cartTotal = useSelector(selectCartTotal) //total priset i varukorgen 
 
   React.useEffect(() => {
