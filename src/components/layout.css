@@ -44,6 +44,27 @@
   flex-direction: column;
   
 }
+.as-link {
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: rgb(74, 130, 194);
+  padding: 10px 15px;
+  margin: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.as-link:focus {
+  outline: none; /* Remove focus outline on click/focus */
+}
+
+.as-link:hover {
+  text-decoration: underline;
+  color: rgb(143, 175, 212);
+}
+
 .logoImg{
  justify-self: start;
  display: inline-flex;

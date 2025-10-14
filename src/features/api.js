@@ -115,22 +115,20 @@ extraParams = {}
  * API: GET /movie/{movie_id}
  * @see https://developer.themoviedb.org/reference/movie-details
  */
-export async function getMovieById(id, { language = "sv-SE" } = {}) {
+export async function getMovieById(
+  id,
+  { language = "sv-SE", append = "credits" } = {}
+) {
   const movieId = Number(id);
   if (!Number.isFinite(movieId)) return null;
 
   const url =
-    `${BASE}/movie/${movieId}?` + queryString({ api_key: API_KEY, language });
-  console.log("getMovieById ->", url);
+    `${BASE}/movie/${movieId}?` +
+    queryString({ api_key: API_KEY, language, append_to_response: append });
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`TMDb ${response.status}`);
-    return await response.json();
-  } catch (error) {
-    console.error("getMovieById failed:", error);
-    return null;
-  }
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`TMDb ${res.status}`);
+  return await res.json();
 }
 
 

@@ -27,8 +27,8 @@ export default function HomePage() {
   return <div style={{ padding: 16 }}>Inga nya filmer hittades.</div>;
   return (
     <div style={{ padding: 16 }}>
-      <h1>Populära Filmer...</h1>
-      <p>
+      <h1 className="title">Populära Filmer...</h1>
+      <p className="subtitle">
         Gå till <Link to="/search">Sök</Link> för att hitta filmer.
       </p>
       <section className="newsCard">
