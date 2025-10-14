@@ -55,10 +55,16 @@
   align-items: center;
   cursor: pointer;
 }
+
+.as-link:focus {
+  outline: none; /* Remove focus outline on click/focus */
+}
+
 .as-link:hover {
   text-decoration: underline;
   color: rgb(143, 175, 212);
 }
+
 .logoImg{
  justify-self: start;
  display: inline-flex;
