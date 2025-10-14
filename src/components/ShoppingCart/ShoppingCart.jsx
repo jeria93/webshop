@@ -12,15 +12,15 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "POSTER",
-    price: 150,
+    price: 1,
     id: 1
   },
   {
     title: "Superman nr5",
-    quantity: 2,
+    quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 120,
+    price: 1,
     id: 2
   },
   {
@@ -28,23 +28,23 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "RENTAL",
-    price: 20,
+    price: 1,
     id: 3
   },
   {
     title: "Wonder Woman nr7",
-    quantity: 3,
+    quantity: 1,
     poster_logo: testImg,
     type: "POSTER",
-    price: 18,
+    price: 1,
     id: 4
   },
   {
     title: "Iron Man nr10",
-    quantity: 2,
+    quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 16,
+    price: 1,
     id: 5
   },
   {
@@ -52,15 +52,15 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "RENTAL",
-    price: 14,
+    price: 1,
     id: 6
   },
   {
     title: "Hulk nr15",
-    quantity: 2,
+    quantity: 1,
     poster_logo: testImg,
     type: "POSTER",
-    price: 17,
+    price: 1,
     id: 7
 
   },
@@ -69,7 +69,7 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 13,
+    price: 1,
     id: 8
 
   }
@@ -157,7 +157,7 @@ return(
   </div>
  
   <div className="payment"> 
-  <h4>Total: {sampleData.price}</h4>
+  <h4>Total: {sampleData.reduce((prev, curr) => prev + curr.quantity * curr.price, 0)} SEK </h4>
   <p><button className='btn-payment'>Betalning</button></p>
   </div>
 </div>

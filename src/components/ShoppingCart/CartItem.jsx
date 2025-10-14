@@ -51,9 +51,9 @@ export default function CartItem({ items }) {
           <div className='div-description'>
             <h4 className='text-heading'>{item.title}</h4>
                 
-                    <span>pris: {item.price} :- </span>
-                    <span>totalt: {item.price * quantity[index]}</span>
-                    {getDeliveryDays()}
+                   {/* <span>pris: {item.price} SEK </span> */}
+                    <span>Totalt: {item.price * quantity[index]} SEK</span>
+                    {/* getDeliveryDays() */}
                
           </div>
 
