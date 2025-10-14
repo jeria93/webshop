@@ -3,6 +3,7 @@ import "./search.css";
 import MoviePoster from "../components/MoviePoster";
 import { useState } from "react";
 import EmptyState from "../components/EmptyState";
+import { Link } from "react-router-dom";
 import {
   formatSEK,
   rentPriceFromId,
@@ -24,7 +25,7 @@ export default function Search() {
   return (
     <div className="search">
       <header className="search__header">
-        <h1 className="search__title">Search</h1>
+        {/* <h1 className="search__title">Search</h1> */}
       </header>
 
       <form className="search__form" onSubmit={handleSubmit}>
@@ -32,18 +33,18 @@ export default function Search() {
           className="search__input"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search movie…"
+          placeholder="Sök filmer..."
         />
         <button
           className="search__button"
           type="submit"
           disabled={!query.trim()}
         >
-          Search
+          Sök
         </button>
       </form>
 
-      {!hasSearched && <EmptyState title="Sök efter filmer" />}
+      {!hasSearched && <EmptyState title="Sök efter filmer" className="empty" />}
 
       {hasSearched && movies.length === 0 && (
         <EmptyState title={`Inga resultat för "${query}"`} />
@@ -59,25 +60,27 @@ export default function Search() {
 
             return (
               <li key={movie.id} className="search__item">
-                <div className="search__poster">
-                  <MoviePoster
-                    path={movie.poster_path}
-                    width={60}
-                    height={90}
-                  />
-                  <div className="search__year">{year}</div>
-                </div>
+                <Link className="search__link" to={`/movieDetails/${movie.id}`}>
+                  <div className="search__poster">
+                    <MoviePoster
+                      path={movie.poster_path}
+                      width={60}
+                      height={90}
+                    />
+                    <div className="search__year">{year}</div>
+                  </div>
 
-                <div className="search__info">
-                  <strong>{movie.title ?? movie.original_title}</strong>
-                </div>
+                  <div className="search__info">
+                    <strong>{movie.title ?? movie.original_title}</strong>
+                  </div>
 
-                <div className="search__prices">
-                  <div>Hyr: {formatSEK(rent)}</div>
-                  <div>Köp: {formatSEK(buy)}</div>
-                  <div>Affisch: {formatSEK(poster)}</div>
-                </div>
-                <div className="search__chevron">›</div>
+                  <div className="search__prices">
+                    <div>Hyr: {formatSEK(rent)}</div>
+                    <div>Köp: {formatSEK(buy)}</div>
+                    <div>Affisch: {formatSEK(poster)}</div>
+                  </div>
+                  <div className="search__chevron">›</div>
+                </Link>
               </li>
             );
           })}

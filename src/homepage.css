@@ -4,6 +4,17 @@
   padding: 2rem;
   text-align: center;
 }
+
+.title {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--light);
+}
+
+.subtitle {
+  color: var(--light);
+}
+
 /* 
 .logo {
   height: 6em;
