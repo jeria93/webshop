@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "./layout.css";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
-import {UserRound, Search, ShoppingBasket, Star, House, Menu, X} from "lucide-react";
+import {UserRound, Search, ShoppingBasket, Star, House, Menu, X, Clapperboard} from "lucide-react";
 import logo from "../assets/MovieCart5.png"
 
 export default function Layout() {
@@ -31,14 +31,14 @@ export default function Layout() {
 
         <div id="navCenter" className={`navCenter ${menuOpen ? "is-open" : ""}`}>
         <Link className="linkIcon" to="/" onClick={closeMenu}><House/>Hem</Link>
-        <Link className="linkIcon" to="/wishList" onClick={closeMenu}><Star/>Favoriter</Link>
+        <Link className="linkIcon" to="/category" onClick={closeMenu}><Clapperboard/>Kategorier</Link>
         
         {/*Logik för varukorgen*/}
         <button className="linkIcon as-link" onClick={() => {
            SetShowShoppingCart(true);
            closeMenu();
+
         }}><ShoppingBasket/>Varukorg</button>
-        
 
 
         <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>
