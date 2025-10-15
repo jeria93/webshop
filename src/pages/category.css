@@ -1,10 +1,4 @@
 
-/* :root{
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
- 
-} */
 body{
     display: flex;
     flex-direction: column;
@@ -17,8 +11,12 @@ body{
   border: 1px solid white;
   border-radius: 10px;
   padding: 10px;
-  /* height: 100%; */
-   
+  background: rgba(126, 150, 207, 0.02); 
+  backdrop-filter: blur(12px) saturate(120%);    
+
+}
+.movie-card:hover{
+   border: 1px solid  rgb(143, 175, 212);
 }
 .movie-card img{
   width: 100%;
@@ -29,15 +27,21 @@ body{
    margin-top: auto;   
    display: block;
 }
-
+.movie-card h4{
+  line-clamp:4;  
+  min-height:3.4em;             
+  max-height:3.4em;
+  color: white;
+}
 .gridMovie{
     display: flex;
     overflow-x:auto;
     overflow-y: hidden; 
     padding: 0 12px;
+    align-items: stretch; 
     scroll-padding-left:20px;
     -webkit-overflow-scrolling: touch;
-     overscroll-behavior-inline: contain;
+    overscroll-behavior-inline: contain;
     gap: 12px;
    
 }
