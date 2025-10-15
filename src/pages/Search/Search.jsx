@@ -82,14 +82,14 @@ export default function Search() {
 
                   <div className="search__prices">
                     <div><button onClick={() =>{
-                      dispatch(addToCart({
+                     dispatch(addToCart(movie, "POSTER"));
+                     /* dispatch(addToCart({
                         id: movie.id,
                         title: movie.title,
-                        quantity: 1,
-                        type: "RENTAL",
+                        quantity: 10,
                         price: formatSEK(rent),
-                        poster_path: movie.poster_path,
-                      }))
+                        poster_path: movie.poster_path
+                      }, "RENTAL")) */
                     }}>Hyr: {formatSEK(rent)}</button></div> {/*Endast för test   <div>Hyr: {formatSEK(rent)}</div> */}
                     <div>Köp: {formatSEK(buy)}</div>
                     <div>Affisch: {formatSEK(poster)}</div>

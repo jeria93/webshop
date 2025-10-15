@@ -85,6 +85,18 @@ export default function ShoppingCart({visibility, onClose}){
   const cartItems = useSelector(selectCartItems) //varukorgen
   const cartTotal = useSelector(selectCartTotal) //total priset i varukorgen 
 
+  function handlePaymentBtn(){
+    //spara ev hyrfimler lokalt
+    const rentals = cartItems.filter((item) => {
+      item.type === "RENTAL"
+      console.log(item.type)
+    })
+    
+    
+    localStorage.setItem('rentals', JSON.stringify(rentals));
+    
+  }
+
   React.useEffect(() => {
     if (visibility) {
       // Förhindrar scroll bakom modal
@@ -159,17 +171,13 @@ return(
  
   <div className="payment"> 
   <h4>Total: {cartTotal} SEK </h4>
-  <p><button className='btn-payment'>Betalning</button></p>
+  <p><button className='btn-payment' onClick={() => {handlePaymentBtn()}}>Betalning</button></p>
   </div>
 </div>
 </div>
 </div>
-
-
-
-      
+    
 );
-
 
 }
 

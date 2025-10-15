@@ -24,7 +24,7 @@ const cartSlice = createSlice({
           state.items.push(item);
         }
       },
-      prepare(movie) {
+      prepare(movie, type = "RENTAL") {
         const id = Number(movie?.id);
         return {
           payload: {
@@ -33,6 +33,7 @@ const cartSlice = createSlice({
             price: priceFromId(id),
             poster_path: movie?.poster_path ?? null,
             quantity: 1,
+            type,
           },
         };
       },
