@@ -5,6 +5,7 @@ import { formatSEK, priceFromId } from "../utils/format";
 import "./movieDetails.css";
 import MovieBackdrop from "../components/MovieBackdrop";
 import MovieMeta from "../components/MovieMeta";
+import TrailerButton from "../components/TrailerButton";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -85,6 +86,8 @@ export default function MovieDetails() {
             <p className="details__overview">
               {movie.overview || "Ingen beskrivning tillgänglig"}
             </p>
+
+            <TrailerButton movieTitle={title} videoResult={movie.videos?.results}/>
 
             <div className="details__price">
               <span>Pris</span>
