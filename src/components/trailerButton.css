@@ -1,0 +1,29 @@
+.yt-play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: red;
+  transition: background-color 120ms ease, transform 120ms ease;
+}
+
+.yt-play:hover {
+  background: red;
+  transform: translateY(-1px);
+}
+
+.yt-play:active {
+  background: firebrick;
+  transform: translateY(0);
+}
+
+.yt-play__triangle {
+  width: 0;
+  height: 0;
+  border-left: 12px solid white;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  margin-left: 2px;
+}
