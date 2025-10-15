@@ -2,6 +2,10 @@
 
 A tiny React app that searches movies on **TMDB** and shows a detail page with price-like info and a **YouTube trailer** button.
 
+
+> **Live demo on GitHub Pages:**  
+> **[Click to open](https://jeria93.github.io/webshop/)**  
+
 ## Quick start (copy/paste)
 
 ```bash
