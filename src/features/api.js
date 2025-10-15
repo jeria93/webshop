@@ -139,5 +139,9 @@ export const GENRE_IDS = {
    Action: 28,
    Drama: 18,
    Romantik: 10749,
+   Amination: 16,
+   Äventyr: 12,
+   SciFi: 878,
+   Thriller: 53
 };
 

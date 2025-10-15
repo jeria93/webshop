@@ -14,7 +14,8 @@
   left: 0;
   right: 0;
    top: 0;
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(12px) saturate(120%); 
   /* margin-inline: auto; */
   z-index: 1000;
 }
