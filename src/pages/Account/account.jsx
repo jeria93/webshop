@@ -16,19 +16,10 @@ const Account = () => {
         
     };
 
-    //simulerad filmdata
-    const rentedMovies = [
-        { id: 1, title: 'Interstellar', rentDate: "2025-10-09", expires: "2025-10-16", poster_path: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" },
-        { id: 2, title: 'Batman', rentDate: "2025-10-09", expires: "2025-10-16", poster_path: "/74xTEgt7R36Fpooo50r9T25onhq.jpg" },
-        { id: 3, title: 'Inception', rentDate: "2025-10-09", expires: "2025-10-16", poster_path: "/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" },
-    ];
-
-    const purchasedMovies = [
-        { id: 4, title: 'The Shawshank Redemption', purchaseDate: "2025-10-09", poster_path: "/hBcY0fEy9bnZXo33lBfC9PM2QWr.jpg" },
-        { id: 5, title: 'The Dark Knight', purchaseDate: "2025-10-09", poster_path: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg" },
-        { id: 6, title: 'Pulp Fiction', purchaseDate: "2025-10-09", poster_path: "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg" },
-    ];
-
+    //Hämta lokalt sparad fildata
+    const rentedMovies = JSON.parse(localStorage.getItem('rental') || '[]')
+    const purchasedMovies = JSON.parse(localStorage.getItem('purchased') || '[]')
+    
     const wishlist = [
         { id: 7, title: 'Dune', addedDate: "2025-10-09", poster_path: "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" },
         { id: 8, title: 'Oppenheimer', addedDate: "2025-10-09", poster_path: "/ptpr0kGAckfQkJeJIt8st5dglvd.jpg" },

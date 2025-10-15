@@ -19,7 +19,9 @@ const cartSlice = createSlice({
           (cartItem) => cartItem.id === item.id && cartItem.type === item.type
         );
         if (existing) {
+          if(item.type == "POSTER"){ //endast kunna öka antalet om det är posters
           existing.quantity += 1;
+          }
         } else {
           state.items.push(item);
         }
@@ -55,12 +57,10 @@ const cartSlice = createSlice({
     },
     removeFromCart: {
       reducer(state, action) {
-        console.log("Reducer körs")
         const {id, type} = action.payload;
         state.items = state.items.filter((cartItem) => !(cartItem.id === id && cartItem.type === type));
       },
       prepare(id, type) {
-        console.log("preapre");
         return { payload: {id, type} };
       },
     },

@@ -92,6 +92,7 @@ export default function MovieDetails() {
 
             {/* <TrailerButton movieTitle={title} videoResult={movie.videos?.results} /> */}
 
+           {/** Hyr knapp */}
             <div className="details__price-actions">
               <button
                 className="details__button details__button--rent"
@@ -102,11 +103,11 @@ export default function MovieDetails() {
                 <span className="details__button-type">Hyr</span>
                 <span className="details__button-price">{formatSEK(rent)}</span>
               </button>
-
+           {/** Köp knapp */}
               <button
                 className="details__button details__button--buy"
-                onClick={() => {
-                  dispatch(addToCart(movie, "PURCHASED"));
+                onClick={() => {dispatch(addToCart(movie, "PURCHASED"));
+                 
                 }}
               >
                 <span className="details__button-type">Köp</span>

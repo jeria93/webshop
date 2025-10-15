@@ -3,8 +3,9 @@ import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
 import { IoCloseCircle } from "react-icons/io5";
-import { selectCartItems, selectCartCount , selectCartTotal} from '../../features/cartSlice';
-import { useSelector } from 'react-redux';
+import { selectCartItems, clearCart , selectCartTotal} from '../../features/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 
@@ -15,20 +16,34 @@ export default function ShoppingCart({visibility, onClose}){
   const cartItems = useSelector(selectCartItems) //varukorgen
   const cartTotal = useSelector(selectCartTotal) //total priset i varukorgen 
 
+  const dispatch = useDispatch();  
+
   function handlePaymentBtn(){
+    const dateTime = new Date();
+    console.log(dateTime);
+
+    
+
     //spara ev hyrfimler lokalt
     const rentals = cartItems.filter((item) => item.type === "RENTAL");
-    localStorage.setItem('rentals', JSON.stringify(rentals));
+    const oldRentalList = JSON.parse(localStorage.getItem('rental') || '[]');
+    const saveRental = [...oldRentalList, ...rentals.map(item => ({...item, rentTime: dateTime}))];
+    
+    localStorage.setItem('rental', JSON.stringify(saveRental));
 
     //Spara köpta posters lokalt
     const posters = cartItems.filter((item) => item.type === "POSTER");
-    localStorage.setItem('posters', JSON.stringify(posters));
+    const  savePoster = rentals.map((item) => ({...item, purchasedTime: dateTime}));
+    localStorage.setItem('posters', JSON.stringify(savePoster));
 
     //Spara köpta filmer lokalt
     const purchased = cartItems.filter((item) => item.type === "PURCHASED");
-    localStorage.setItem('purchased', JSON.stringify(purchased));
+    const oldpurchasedList = JSON.parse(localStorage.getItem('purchased') || '[]');
+    const savePurchased = [...oldpurchasedList, ...purchased.map(item => ({...item, rentTime: dateTime}))];
+    
+    localStorage.setItem('purchased', JSON.stringify(savePurchased));
 
-    console.log(cartItems)
+    dispatch(clearCart());
   
   }
 

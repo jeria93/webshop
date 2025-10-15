@@ -52,7 +52,7 @@ export default function CartItem({ items }) {
             </span>
           </div>
          ): ( 
-          <div>
+          <div className='div-quantity'>
              <FaRegTrashAlt 
                 size={36}
                 onClick={() => dispatch(removeFromCart(item.id, item.type))} />
