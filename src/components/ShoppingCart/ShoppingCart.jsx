@@ -7,79 +7,9 @@ import { selectCartItems, selectCartCount , selectCartTotal} from '../../feature
 import { useSelector } from 'react-redux';
 
 
-/*const sampleData = [
-  {
-    title: "Batman nr23",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "POSTER",
-    price: 1,
-    id: 1
-  },
-  {
-    title: "Superman nr5",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "MOVIE",
-    price: 1,
-    id: 2
-  },
-  {
-    title: "Spider-Man nr12",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "RENTAL",
-    price: 1,
-    id: 3
-  },
-  {
-    title: "Wonder Woman nr7",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "POSTER",
-    price: 1,
-    id: 4
-  },
-  {
-    title: "Iron Man nr10",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "MOVIE",
-    price: 1,
-    id: 5
-  },
-  {
-    title: "Thor nr8",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "RENTAL",
-    price: 1,
-    id: 6
-  },
-  {
-    title: "Hulk nr15",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "POSTER",
-    price: 1,
-    id: 7
-
-  },
-  {
-    title: "Black Widow nr3",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "MOVIE",
-    price: 490,
-    id: 8
-
-  }
-];
-*/
 
 
 
-//Läsa in produkterna via Redux
 export default function ShoppingCart({visibility, onClose}){
 
   const cartItems = useSelector(selectCartItems) //varukorgen
@@ -87,15 +17,21 @@ export default function ShoppingCart({visibility, onClose}){
 
   function handlePaymentBtn(){
     //spara ev hyrfimler lokalt
-    const rentals = cartItems.filter((item) => {
-      item.type === "RENTAL"
-      console.log(item.type)
-    })
-    
-    
+    const rentals = cartItems.filter((item) => item.type === "RENTAL");
     localStorage.setItem('rentals', JSON.stringify(rentals));
-    
+
+    //Spara köpta posters lokalt
+    const posters = cartItems.filter((item) => item.type === "POSTER");
+    localStorage.setItem('posters', JSON.stringify(posters));
+
+    //Spara köpta filmer lokalt
+    const purchased = cartItems.filter((item) => item.type === "PURCHASED");
+    localStorage.setItem('purchased', JSON.stringify(purchased));
+
+    console.log(cartItems)
+  
   }
+
 
   React.useEffect(() => {
     if (visibility) {

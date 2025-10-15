@@ -1,62 +1,63 @@
 import './cartItem.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { removeFromCart, addQuantity,subQuantity } from '../../features/cartSlice';
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import MoviePoster from '../MoviePoster/MoviePoster';
 
-// slumpa lite leverans alternativ
-function getDeliveryDays() {
-  const shipingDays = [
-    "Skickas i dag",
-    "Skickas inom 2-5 vardagar",
-    "Invänta besked om leverans"
-  ];
-  const day = shipingDays[Math.floor(Math.random() * 3)];
-
-  switch (day) {
-    case "Skickas i dag":
-      return <span style={{ color: 'green' }}>Skickas i dag</span>;
-    case "Skickas inom 2-5 vardagar":
-      return <span style={{ color: 'orange' }}>Skickas inom 2-5 vardagar</span>;
-    case "Invänta besked om leverans":
-      return <span style={{ color: 'red' }}>Invänta besked om leverans</span>;
-    default:
-      return <span>Information om leveranstid saknas</span>;
-  }
-}
 
 export default function CartItem({ items }) {
+
+ function typeOfMedia(type){
+  switch(type){
+    case "POSTER":
+      return "Poster";
+    case "PURCHASED":
+      return "Köpfilm";
+    case "RENTAL":
+      return "Hyrfilm";
+    default:
+      return "Okända vara";
+  }
+ } 
  
   const dispatch = useDispatch();
   return (
     <div className='parent'>
       {items.map((item) => (
-        <div className='product-item' key={item.id}>
+        <div className='product-item' key={`${item.id}-${item.type}`}>
           <div className='div-img'>
-            {/*<img src={item.poster_logo} alt="bild" /> */}
             <MoviePoster path={item.poster_path} />
-            {console.log(item.id)}
           </div>
 
           <div className='div-description'>
             <h4 className='text-heading'>{item.title}</h4>
+            <span>{typeOfMedia(item.type)}</span>
                 
-                   {/* <span>pris: {item.price} SEK </span> */}
+                  
                     <span>Totalt: {item.quantity * item.price} SEK</span>
-                    { /*getDeliveryDays() */ }
+                    
                
           </div>
-
+          {/**Endast poster ska ha aplus och minus knapp */}
+          { item.type == "POSTER" ? (
           <div className='div-quantity'>
-            <span onClick={() => dispatch(addQuantity(item.id))}>
+            <span onClick={() => dispatch(addQuantity({id: item.id, type: item.type}))}>
               <IoMdAddCircleOutline size={32} />
             </span>
             <p className='p-quantity'>{item.quantity}</p>
-            <span onClick={() => dispatch(subQuantity(item.id))}>
+            <span onClick={() => dispatch(subQuantity({id: item.id, type: item.type}))}>
               <MdOutlineRemoveCircleOutline size={32} />
             </span>
           </div>
+         ): ( 
+          <div>
+             <FaRegTrashAlt 
+                size={36}
+                onClick={() => dispatch(removeFromCart(item.id, item.type))} />
+          </div>    
+         ) }
         </div>
       ))}
     </div>

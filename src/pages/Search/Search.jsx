@@ -81,10 +81,7 @@ export default function Search() {
                   </div>
 
                   <div className="search__prices">
-                    <div><button onClick={() =>{
-                     dispatch(addToCart(movie, "POSTER"));
-                   
-                    }}>Hyr: {formatSEK(rent)}</button></div> {/*Endast för test   <div>Hyr: {formatSEK(rent)}</div> */}
+                    <div>Hyr: {formatSEK(rent)}</div> {/*Endast för test   <div>Hyr: {formatSEK(rent)}</div> */}
                     <div>Köp: {formatSEK(buy)}</div>
                     <div>Affisch: {formatSEK(poster)}</div>
                   </div>
