@@ -4,6 +4,10 @@ import MoviePoster from "../components/MoviePoster";
 import { useState } from "react";
 import EmptyState from "../components/EmptyState";
 import { Link } from "react-router-dom";
+import { addToCart } from "../features/cartSlice.js"; //Test DA
+import { useDispatch } from "react-redux";
+
+
 import {
   formatSEK,
   rentPriceFromId,
@@ -15,6 +19,8 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
+
+  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -75,7 +81,16 @@ export default function Search() {
                   </div>
 
                   <div className="search__prices">
-                    <div>Hyr: {formatSEK(rent)}</div>
+                    <div><button onClick={() =>{
+                      dispatch(addToCart({
+                        id: movie.id,
+                        title: movie.title,
+                        quantity: 1,
+                        type: "RENTAL",
+                        price: formatSEK(rent),
+                        poster_path: movie.poster_path,
+                      }))
+                    }}>Hyr: {formatSEK(rent)}</button></div> {/*Endast för test   <div>Hyr: {formatSEK(rent)}</div> */}
                     <div>Köp: {formatSEK(buy)}</div>
                     <div>Affisch: {formatSEK(poster)}</div>
                   </div>

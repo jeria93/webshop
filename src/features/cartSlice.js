@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { priceFromId } from "../utils/format.js";
 
-const initialState = { items: [] };
+
+
+
+const initialState = { 
+  items: [],       
+}
 
 const cartSlice = createSlice({
   name: "cart",
@@ -32,6 +37,19 @@ const cartSlice = createSlice({
         };
       },
     },
+    addQuantity: (state, action) => {
+      const existingItem = state.items.find((item) => item.id === action.payload)
+      existingItem.quantity += 1;
+    },
+    subQuantity: (state, action) => {
+      const existingItem = state.items.find((item) => item.id === action.payload)
+        if(existingItem.quantity <= 1){
+          const id = action.payload;
+          state.items = state.items.filter((cartItem) => cartItem.id !== id);
+        }else {
+          existingItem.quantity -= 1;
+        }
+    },
     removeFromCart: {
       reducer(state, action) {
         const id = action.payload;
@@ -47,7 +65,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, addQuantity, subQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
 
 /* Selectors */

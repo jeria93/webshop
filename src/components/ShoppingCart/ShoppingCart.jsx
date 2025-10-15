@@ -1,26 +1,27 @@
 import React from 'react';
-import testImg from '../../assets/batman.jpg';
 import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
 import { IoCloseCircle } from "react-icons/io5";
+import { selectCartItems, selectCartCount , selectCartTotal} from '../../features/cartSlice';
+import { useSelector } from 'react-redux';
 
 
-const sampleData = [
+/*const sampleData = [
   {
     title: "Batman nr23",
     quantity: 1,
     poster_logo: testImg,
     type: "POSTER",
-    price: 150,
+    price: 1,
     id: 1
   },
   {
     title: "Superman nr5",
-    quantity: 2,
+    quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 120,
+    price: 1,
     id: 2
   },
   {
@@ -28,23 +29,23 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "RENTAL",
-    price: 20,
+    price: 1,
     id: 3
   },
   {
     title: "Wonder Woman nr7",
-    quantity: 3,
+    quantity: 1,
     poster_logo: testImg,
     type: "POSTER",
-    price: 18,
+    price: 1,
     id: 4
   },
   {
     title: "Iron Man nr10",
-    quantity: 2,
+    quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 16,
+    price: 1,
     id: 5
   },
   {
@@ -52,15 +53,15 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "RENTAL",
-    price: 14,
+    price: 1,
     id: 6
   },
   {
     title: "Hulk nr15",
-    quantity: 2,
+    quantity: 1,
     poster_logo: testImg,
     type: "POSTER",
-    price: 17,
+    price: 1,
     id: 7
 
   },
@@ -69,17 +70,20 @@ const sampleData = [
     quantity: 1,
     poster_logo: testImg,
     type: "MOVIE",
-    price: 13,
+    price: 490,
     id: 8
 
   }
 ];
-
+*/
 
 
 
 //Läsa in produkterna via Redux
 export default function ShoppingCart({visibility, onClose}){
+
+  const cartItems = useSelector(selectCartItems) //varukorgen
+  const cartTotal = useSelector(selectCartTotal) //total priset i varukorgen 
 
   React.useEffect(() => {
     if (visibility) {
@@ -99,13 +103,10 @@ export default function ShoppingCart({visibility, onClose}){
 
 //över 500 kronor och fri frakt
 const isFreeShiping = () => {
-  let totalPrice = 500;  //ändras till 0 
+  let totalPrice = cartTotal;  //ändras till 0 
   
-  sampleData.map((item) => {
-      totalPrice = totalPrice + item.price;
-      console.log("total: "+ totalPrice + " item: " + item.price);
-  });
-      if (totalPrice > 500) {
+  
+      if (totalPrice >= 500) {
     return (
       <p style={{ color: "green",  gap: "8px" }}>
         <FaCheck color="green" />
@@ -114,7 +115,7 @@ const isFreeShiping = () => {
     );
   }
 
-  return ( <p> {500 - totalPrice} Kvar till fri frakt (handla för mer än 500 kr) </p>)  ;
+  return ( <p> {500 - totalPrice} kronor kvar till fri frakt (handla för mer än 500 kr) </p>)  ;
 
  }
 
@@ -152,12 +153,12 @@ return(
   <div className="div-display-area"> 
 
         {/* LOGIK för att visa en vara*/}
-        <CartItem items={sampleData}></CartItem>
+        <CartItem items={cartItems}></CartItem>
 
   </div>
  
   <div className="payment"> 
-  <h4>Total: {sampleData.price}</h4>
+  <h4>Total: {cartTotal} SEK </h4>
   <p><button className='btn-payment'>Betalning</button></p>
   </div>
 </div>
