@@ -51,7 +51,6 @@ export default function Layout() {
 
         <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>
         <Link className="linkIcon" to="/search" onClick={closeMenu}><Search/>Sök</Link>
-         <Link className="linkIcon" to="/rental" onClick={closeMenu}><TvMinimalPlay/>Hyrfilmer</Link>
         </div>
       </nav>
 

@@ -25,7 +25,7 @@ const router = createHashRouter([
       { path: "/account", element: <Account /> },
       { path: "/movieDetails/:id", element: <MovieDetails /> },
       {path: "/category", element:<Category/>},
-      {path: "/rental", element:<Rentals/>},
+     // {path: "/rental", element:<Rentals/>},
 
     ],
   },
