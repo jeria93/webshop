@@ -10,8 +10,9 @@ import { useSelector } from "react-redux";
 export default function Layout() {
   const [showShoppingCart, SetShowShoppingCart] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const noCartItems = useSelector(selectCartCount);
+
+  const isLoggedIn = useSelector((state) => state.login.isloggedIn);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -49,7 +50,11 @@ export default function Layout() {
         <div className="cart_badge" style={{display: noCartItems? "block" : "none"}}>{noCartItems}</div>
         </div>
 
-        <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>
+        {isLoggedIn ? 
+          <Link className="linkIcon" to="/account"  style={{color: "green"}} onClick={closeMenu}><UserRound color="green"/>Konto</Link>
+          :
+          <Link className="linkIcon" to="/account"  style={{color: "red"}}onClick={closeMenu}><UserRound color="red"/>Konto</Link>
+          }
         <Link className="linkIcon" to="/search" onClick={closeMenu}><Search/>Sök</Link>
         </div>
       </nav>

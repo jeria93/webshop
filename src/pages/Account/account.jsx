@@ -4,6 +4,7 @@ import MoviePoster from '../../components/MoviePoster/MoviePoster';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn, logOut } from '../../features/loginSlice';
 
+
 const Account = () => {
     
     //const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,7 +13,7 @@ const Account = () => {
     
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.login.isloggedIn);
-
+    
     // simulera användardata
     const userData = {
         name: 'Daniel',
