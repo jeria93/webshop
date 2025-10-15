@@ -46,7 +46,7 @@ export default function Layout() {
         }}>
           
           <ShoppingBasket/>Varukorg</span>
-        <div className="cart_badge" style={{display: noCartItems? "inline" : "none"}}>{noCartItems}</div>
+        <div className="cart_badge" style={{display: noCartItems? "block" : "none"}}>{noCartItems}</div>
         </div>
 
         <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>
