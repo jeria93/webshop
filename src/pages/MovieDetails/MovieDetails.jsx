@@ -72,10 +72,13 @@ export default function MovieDetails() {
   return (
     <div className="details">
       <section className="details__hero">
-        <div className="details__container">
-          <MovieBackdrop path={bannerImagePath} alt={title} />
-        </div>
-      </section>
+  <div className="details__container">
+    <div className="hero__image-container">
+      <MovieBackdrop path={bannerImagePath} alt={title} />
+      <TrailerButton movieTitle={title} videoResults={movie.videos?.results} />
+    </div>
+  </div>
+</section>
 
       <section className="details__main">
         <div className="details__container">
@@ -87,7 +90,7 @@ export default function MovieDetails() {
               {movie.overview || "Ingen beskrivning tillgänglig"}
             </p>
 
-            <TrailerButton movieTitle={title} videoResult={movie.videos?.results} />
+            {/* <TrailerButton movieTitle={title} videoResult={movie.videos?.results} /> */}
 
             <div className="details__price-actions">
               <button
