@@ -55,28 +55,33 @@
   margin-top: 50px; } */
 .newsCard{
  display: grid;
- /* Decides how many movies get to take place in width */
- grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
- gap:1rem;
- text-align: center;
- border:0;
+ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
  
 }
 .newsCard__item{
-  display: flex;
-  flex-direction: row;
-
+  display: block;
+  width: 100%;
+  min-width: 0; 
   text-decoration: none;
   color:initial;
+  height: 100%;
+ 
 }
 .newsCard__item article {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background:rgba(0, 0, 0, 0.6);          
+  min-width: 0;                 
+  height: 100%;
+  align-items: stretch;
+  background: rgba(126, 150, 207, 0.02); 
+  backdrop-filter: blur(12px) saturate(120%);        
   border-radius: 8px;
   border: 1px solid white;
   overflow: hidden;
+  padding: 10px;
   
 }
 .newsCard__item article:hover{
@@ -85,13 +90,14 @@
 .newsCard img,
 .newsCard__placeholder {
   margin-top: 10px;
-  width: 75%;
+  width: 100%;
   aspect-ratio: 2/3;
   object-fit: cover;
   border-radius: 5px;
   border: 1px solid white;
 }
 .newsCard__title {
+  min-width: 0;
   margin: 8px 10px 2px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -99,12 +105,10 @@
   color: white;
 }
 .newsCard__meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: 0 10px 10px;
   font-size: 0.8rem;
   opacity: 0.75;
   color: white ;
+  margin-top: auto;
 }
 

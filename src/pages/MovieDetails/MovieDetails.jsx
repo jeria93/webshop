@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getMovieById } from "../features/api";
-import { formatSEK, rentPriceFromId, buyPriceFromId, posterPriceFromId } from "../utils/format";
+import { getMovieById } from "../../features/api";
+import {
+  formatSEK,
+  rentPriceFromId,
+  buyPriceFromId,
+  posterPriceFromId,
+} from "../../utils/format";
 import "./movieDetails.css";
-import MovieBackdrop from "../components/MovieBackdrop";
-import MovieMeta from "../components/MovieMeta";
+import MovieBackdrop from "../../components/MovieBackdrop/MovieBackdrop";
+import MovieMeta from "../../components/MovieMeta/MovieMeta";
+import TrailerButton from "../../components/TrailerButton/TrailerButton";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cartSlice.js";
+import { addToCart } from "../../features/cartSlice.js";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -59,7 +65,6 @@ export default function MovieDetails() {
 
   const title = movie.title ?? movie.original_title ?? "Ingen titel funnen";
   const bannerImagePath = movie.backdrop_path || movie.poster_path;
-  // const displayPrice = formatSEK(priceFromId(Number(movie.id)));
   const rent = rentPriceFromId(movie.id);
   const buy = buyPriceFromId(movie.id);
   const poster = posterPriceFromId(movie.id);
@@ -82,57 +87,66 @@ export default function MovieDetails() {
               {movie.overview || "Ingen beskrivning tillgänglig"}
             </p>
 
-<div className="details__price-actions">
-              <button 
+            <TrailerButton movieTitle={title} videoResult={movie.videos?.results} />
+
+            <div className="details__price-actions">
+              <button
                 className="details__button details__button--rent"
-                onClick={() =>{
-                  dispatch(addToCart({
-                    id: movie.id,
-                    title: movie.title,
-                    quantity: 1,
-                    type: "RENTAL",
-                    price: formatSEK(rent),
-                    poster_path: movie.poster_path,
-                  }))
+                onClick={() => {
+                  dispatch(
+                    addToCart({
+                      id: movie.id,
+                      title: movie.title,
+                      quantity: 1,
+                      type: "RENTAL",
+                      price: formatSEK(rent),
+                      poster_path: movie.poster_path,
+                    })
+                  );
                 }}
               >
                 <span className="details__button-type">Hyr</span>
                 <span className="details__button-price">{formatSEK(rent)}</span>
               </button>
 
-              <button 
+              <button
                 className="details__button details__button--buy"
-                onClick={() =>{
-                  dispatch(addToCart({
-                    id: movie.id,
-                    title: movie.title,
-                    quantity: 1,
-                    type: "BUY",
-                    price: formatSEK(buy),
-                    poster_path: movie.poster_path,
-                  }))
+                onClick={() => {
+                  dispatch(
+                    addToCart({
+                      id: movie.id,
+                      title: movie.title,
+                      quantity: 1,
+                      type: "BUY",
+                      price: formatSEK(buy),
+                      poster_path: movie.poster_path,
+                    })
+                  );
                 }}
               >
                 <span className="details__button-type">Köp</span>
                 <span className="details__button-price">{formatSEK(buy)}</span>
               </button>
 
-              <button 
+              <button
                 className="details__button details__button--poster"
-                onClick={() =>{
-                  dispatch(addToCart({
-                    id: movie.id,
-                    title: movie.title,
-                    quantity: 1,
-                    type: "POSTER",
-                    price: formatSEK(poster),
-                    poster_path: movie.poster_path,
-                  }))
+                onClick={() => {
+                  dispatch(
+                    addToCart({
+                      id: movie.id,
+                      title: movie.title,
+                      quantity: 1,
+                      type: "POSTER",
+                      price: formatSEK(poster),
+                      poster_path: movie.poster_path,
+                    })
+                  );
                 }}
               >
                 <span className="details__button-type">Poster</span>
                 <span className="details__button-price">{formatSEK(poster)}</span>
               </button>
+
             </div>
           </div>
         </div>

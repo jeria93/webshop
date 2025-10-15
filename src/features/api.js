@@ -114,10 +114,11 @@ extraParams = {}
  * Fetch TMDB Movie Details for a given ID
  * API: GET /movie/{movie_id}
  * @see https://developer.themoviedb.org/reference/movie-details
+ * @see https://developer.themoviedb.org/reference/movie-videos
  */
 export async function getMovieById(
   id,
-  { language = "sv-SE", append = "credits" } = {}
+  { language = "sv-SE", append = "credits,videos" } = {}
 ) {
   const movieId = Number(id);
   if (!Number.isFinite(movieId)) return null;
