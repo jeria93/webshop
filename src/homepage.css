@@ -111,4 +111,8 @@
   color: white ;
   margin-top: auto;
 }
-
+.infoText{
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}

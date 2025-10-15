@@ -40,13 +40,16 @@ export default function HomePage() {
             ) : (
               <div className="newsCard__placeholder">Ingen poster</div>
             )}
+            
             <h3 className="newsCard__title">{m.title}</h3>
+            <div className="infoText">
             <p className="newsCard__meta">
               {/* get the release date/year and month */}
               <time dateTime={m.release_date}>{m.release_date}</time>
               {/* get the result of statistic vote, how great is this movie */}
-              {m.vote_average ? <>  ⭐ {m.vote_average.toFixed(1)}</> : null}
+              {m.vote_average ? <p>  ⭐ {m.vote_average.toFixed(1)}</p> : null}
             </p>
+            </div>
           </article>
 
           </Link>
