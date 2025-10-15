@@ -1,10 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "./layout.css";
-import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import {UserRound, Search, ShoppingBasket, Star, House, Menu, X, Clapperboard, TvMinimalPlay} from "lucide-react";
-import logo from "../assets/MovieCart5.png"
-import { selectCartCount } from "../features/cartSlice";
+import logo from "../../assets/MovieCart5.png"
+import { selectCartCount } from "../../features/cartSlice";
 import { useSelector } from "react-redux";
 
 export default function Layout() {

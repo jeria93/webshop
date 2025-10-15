@@ -1,4 +1,4 @@
-import { backdropUrl } from "../features/api";
+import { backdropUrl } from "../../features/api";
 
 export default function MovieBackdrop({
   path,

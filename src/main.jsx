@@ -4,7 +4,7 @@ import "./index.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import MovieDetails from "./pages/MovieDetails/MovieDetails.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
-import Layout from "./components/Layout.jsx";
+import Layout from "./components/Layout/Layout.jsx";
 import Account from "./pages/Account/account.jsx";
 import { Provider } from "react-redux";
 import { store } from "./features/store.js";

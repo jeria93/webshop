@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, addQuantity,subQuantity } from '../../features/cartSlice';
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import MoviePoster from '../MoviePoster';
+import MoviePoster from '../MoviePoster/MoviePoster';
 
 // slumpa lite leverans alternativ
 function getDeliveryDays() {
@@ -29,9 +29,6 @@ function getDeliveryDays() {
 export default function CartItem({ items }) {
  
   const dispatch = useDispatch();
-
-  
-
   return (
     <div className='parent'>
       {items.map((item) => (
