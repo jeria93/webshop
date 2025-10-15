@@ -1,18 +1,22 @@
 import './account.css';
 import { useState } from 'react';
 import MoviePoster from '../../components/MoviePoster/MoviePoster';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn, logOut } from '../../features/loginSlice';
 
 const Account = () => {
     
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    //const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isGuest, setIsGuest] = useState(false);
     const [activeTab,setActiveTab] = useState('profile');
     
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.login.isloggedIn);
 
     // simulera användardata
     const userData = {
-        name: 'test',
-        email: 'test',
+        name: 'Daniel',
+        email: 'daniel@movicart.se',
         
     };
 
@@ -27,7 +31,7 @@ const Account = () => {
     ];
 
     const handleLogin = () => {
-        setIsLoggedIn(true);
+       dispatch(logIn())
     };
 
     const handleGuest = () => {
@@ -35,7 +39,7 @@ const Account = () => {
     };
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
+        dispatch(logOut());
         setIsGuest(false);
         setActiveTab('profile');
     };
