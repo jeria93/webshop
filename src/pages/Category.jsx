@@ -1,15 +1,19 @@
  import "./category.css";
  import { GENRE_IDS, getRecentlyReleasedMovies, posterUrl} from "../features/api";
  import { useState, useEffect } from "react";
+ import { Link } from "react-router-dom";
+ 
 
  function MovieCard({movie}) {
     const src = posterUrl(movie.poster_path, "w342");
       return (
+        <Link to={`/movieDetails/${movie.id}`}>
     <article className="movie-card">
       {src ? <img src={src} alt={movie.title} loading="lazy" /> : <div className="poster-fallback">Ingen bild</div>}
       <h4>{movie.title}</h4>
-      <small>⭐ {movie.vote_average?.toFixed(1)}</small>
+      <p>⭐ {movie.vote_average?.toFixed(1)}</p>
     </article>
+    </Link>
   );
  }
  
@@ -52,6 +56,7 @@ function Category(){
           {sec.loading ? (
             <div className="gridMovie" >
               {Array.from({ length: 8 }).map((_, i) => (
+                
                 <div key={i} className="skeleton" />
               ))}
             </div>
