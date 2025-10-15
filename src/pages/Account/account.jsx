@@ -11,8 +11,9 @@ const Account = () => {
 
     // simulera användardata
     const userData = {
-        name: 'John Doe',
-        email: 'KZx6S@example.com',
+        name: 'test',
+        email: 'test',
+        
     };
 
     //simulerad filmdata
