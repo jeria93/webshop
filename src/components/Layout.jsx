@@ -2,16 +2,12 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "./layout.css";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
-import {UserRound, Search, ShoppingBasket, Star, House, Menu, X, Clapperboard} from "lucide-react";
+import {UserRound, Search, ShoppingBasket, Star, House, Menu, X, Clapperboard, TvMinimalPlay} from "lucide-react";
 import logo from "../assets/MovieCart5.png"
-import { selectCartCount } from "../features/cartSlice";
-import { useSelector } from "react-redux";
 
 export default function Layout() {
   const [showShoppingCart, SetShowShoppingCart] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const noCartItems = useSelector(selectCartCount);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -38,19 +34,16 @@ export default function Layout() {
         <Link className="linkIcon" to="/category" onClick={closeMenu}><Clapperboard/>Kategorier</Link>
         
         {/*Logik för varukorgen*/}
-        <div className="cart_wrapper">
-        <span className="linkIcon as-link" onClick={() => {
+        <button className="linkIcon as-link" onClick={() => {
            SetShowShoppingCart(true);
            closeMenu();
 
-        }}>
-          
-          <ShoppingBasket/>Varukorg</span>
-        <div className="cart_badge" style={{display: noCartItems? "block" : "none"}}>{noCartItems}</div>
-        </div>
+        }}><ShoppingBasket/>Varukorg</button>
+
 
         <Link className="linkIcon" to="/account" onClick={closeMenu}><UserRound/>Konto</Link>
         <Link className="linkIcon" to="/search" onClick={closeMenu}><Search/>Sök</Link>
+        <Link className="linkIcon" to="/rental" onClick={closeMenu}><TvMinimalPlay/> hyrfilmer</Link>
         </div>
       </nav>
 

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getMovieById } from "../features/api";
-import { formatSEK, priceFromId } from "../utils/format";
+import { getMovieById } from "../../features/api";
+import { formatSEK, priceFromId } from "../../utils/format";
 import "./movieDetails.css";
-import MovieBackdrop from "../components/MovieBackdrop";
-import MovieMeta from "../components/MovieMeta";
+import MovieBackdrop from "../../components/MovieBackdrop";
+import MovieMeta from "../../components/MovieMeta";
 
 export default function MovieDetails() {
   const { id } = useParams();

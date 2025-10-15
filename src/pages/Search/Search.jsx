@@ -1,10 +1,10 @@
-import { searchMovies } from "../features/api";
+import { searchMovies } from "../../features/api";
 import "./search.css";
-import MoviePoster from "../components/MoviePoster";
+import MoviePoster from "../../components/MoviePoster.jsx";
 import { useState } from "react";
-import EmptyState from "../components/EmptyState";
+import EmptyState from "../../components/EmptyState";
 import { Link } from "react-router-dom";
-import { addToCart } from "../features/cartSlice.js"; //Test DA
+import { addToCart } from "../../features/cartSlice.js"; //Test DA
 import { useDispatch } from "react-redux";
 
 
@@ -13,7 +13,7 @@ import {
   rentPriceFromId,
   buyPriceFromId,
   posterPriceFromId,
-} from "../utils/format.js";
+} from "../../utils/format.js";
 
 export default function Search() {
   const [query, setQuery] = useState("");

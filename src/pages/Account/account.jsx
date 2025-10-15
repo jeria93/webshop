@@ -1,6 +1,6 @@
 import './account.css';
 import { useState } from 'react';
-import MoviePoster from "../components/MoviePoster";
+import MoviePoster from "../../components/MoviePoster";
 
 const Account = () => {
     
