@@ -5,7 +5,7 @@ import {
   getDirectorNames,
   formatYearOrDash,
   formatVoteAverageOrDash,
-} from "../utils/movieMeta";
+} from "../../utils/movieMeta";
 
 export default function MovieMeta({ movie, castCount = 3 }) {
   if (!movie) return null;

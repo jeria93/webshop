@@ -1,5 +1,5 @@
  import "./category.css";
- import { GENRE_IDS, getRecentlyReleasedMovies, posterUrl} from "../features/api";
+ import { GENRE_IDS, getRecentlyReleasedMovies, posterUrl} from "../../features/api";
  import { useState, useEffect } from "react";
  import { Link } from "react-router-dom";
  
