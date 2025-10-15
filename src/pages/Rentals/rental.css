@@ -19,7 +19,7 @@
   margin-bottom: 20px;
 }
 
-.account-header h1 {
+.rental-header h1 {
   font-size: clamp(1.5rem, 6vw, 2.5rem);
   margin-bottom: 8px;
   background: linear-gradient(90deg, var(--accent), #22d3ee);
