@@ -7,8 +7,6 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import MoviePoster from '../MoviePoster/MoviePoster';
 
 
-export default function CartItem({ items }) {
-
  function typeOfMedia(type){
   switch(type){
     case "POSTER":
@@ -21,7 +19,10 @@ export default function CartItem({ items }) {
       return "Okända vara";
   }
  } 
- 
+
+
+export default function CartItem({ items }) {
+
   const dispatch = useDispatch();
   return (
     <div className='parent'>
@@ -33,12 +34,8 @@ export default function CartItem({ items }) {
 
           <div className='div-description'>
             <h4 className='text-heading'>{item.title}</h4>
-            <span>{typeOfMedia(item.type)}</span>
-                
-                  
+            <span>{typeOfMedia(item.type)}</span>   
                     <span>Totalt: {item.quantity * item.price} SEK</span>
-                    
-               
           </div>
           {/**Endast poster ska ha aplus och minus knapp */}
           { item.type == "POSTER" ? (

@@ -1,7 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { priceFromId } from "../utils/format.js";
+import { buyPriceFromId, posterPriceFromId, priceFromId, rentPriceFromId } from "../utils/format.js";
 
 
+//Sätt pris efter vilken köpform av film. hyr, köp eller poster
+function setPricebyType(type,movie) {
+        let price;
+
+        switch(type){
+          case "POSTER":
+            price = posterPriceFromId(movie.id);
+            console.log("Poster: ", price)
+            break;
+          case "PURCHASED":
+            price = buyPriceFromId(movie.id);
+             console.log("Köp: ", price)
+            break;
+          case "RENTAL":
+            price = rentPriceFromId(movie.id);
+             console.log("Hyr: ", price)
+            break;
+          default:
+            break;
+        }
+
+        return price;
+}
 
 
 const initialState = { 
@@ -28,11 +51,14 @@ const cartSlice = createSlice({
       },
       prepare(movie, type) {
         const id = Number(movie?.id);
+        const price = setPricebyType(type, movie);
+        console.log(price)
+
         return {
           payload: {
             id,
             title: movie?.title ?? movie?.original_title ?? "No title",
-            price: priceFromId(id),
+            price,
             poster_path: movie?.poster_path ?? null,
             quantity: 1,
             type,
