@@ -92,39 +92,22 @@ export default function MovieDetails() {
 
             {/* <TrailerButton movieTitle={title} videoResult={movie.videos?.results} /> */}
 
+           {/** Hyr knapp */}
             <div className="details__price-actions">
               <button
                 className="details__button details__button--rent"
                 onClick={() => {
-                  dispatch(
-                    addToCart({
-                      id: movie.id,
-                      title: movie.title,
-                      quantity: 1,
-                      type: "RENTAL",
-                      price: formatSEK(rent),
-                      poster_path: movie.poster_path,
-                    })
-                  );
+                  dispatch(addToCart(movie, "RENTAL"));
                 }}
               >
                 <span className="details__button-type">Hyr</span>
                 <span className="details__button-price">{formatSEK(rent)}</span>
               </button>
-
+           {/** Köp knapp */}
               <button
                 className="details__button details__button--buy"
-                onClick={() => {
-                  dispatch(
-                    addToCart({
-                      id: movie.id,
-                      title: movie.title,
-                      quantity: 1,
-                      type: "BUY",
-                      price: formatSEK(buy),
-                      poster_path: movie.poster_path,
-                    })
-                  );
+                onClick={() => {dispatch(addToCart(movie, "PURCHASED"));
+                 
                 }}
               >
                 <span className="details__button-type">Köp</span>
@@ -135,15 +118,7 @@ export default function MovieDetails() {
                 className="details__button details__button--poster"
                 onClick={() => {
                   dispatch(
-                    addToCart({
-                      id: movie.id,
-                      title: movie.title,
-                      quantity: 1,
-                      type: "POSTER",
-                      price: formatSEK(poster),
-                      poster_path: movie.poster_path,
-                    })
-                  );
+                    addToCart(movie, "POSTER"));
                 }}
               >
                 <span className="details__button-type">Poster</span>

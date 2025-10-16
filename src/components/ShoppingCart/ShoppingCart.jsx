@@ -3,99 +3,50 @@ import '../ShoppingCart/shoppingCart.css'
 import { FaCheck } from "react-icons/fa";
 import CartItem from './CartItem';
 import { IoCloseCircle } from "react-icons/io5";
-import { selectCartItems, selectCartCount , selectCartTotal} from '../../features/cartSlice';
-import { useSelector } from 'react-redux';
-
-
-/*const sampleData = [
-  {
-    title: "Batman nr23",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "POSTER",
-    price: 1,
-    id: 1
-  },
-  {
-    title: "Superman nr5",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "MOVIE",
-    price: 1,
-    id: 2
-  },
-  {
-    title: "Spider-Man nr12",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "RENTAL",
-    price: 1,
-    id: 3
-  },
-  {
-    title: "Wonder Woman nr7",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "POSTER",
-    price: 1,
-    id: 4
-  },
-  {
-    title: "Iron Man nr10",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "MOVIE",
-    price: 1,
-    id: 5
-  },
-  {
-    title: "Thor nr8",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "RENTAL",
-    price: 1,
-    id: 6
-  },
-  {
-    title: "Hulk nr15",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "POSTER",
-    price: 1,
-    id: 7
-
-  },
-  {
-    title: "Black Widow nr3",
-    quantity: 1,
-    poster_logo: testImg,
-    type: "MOVIE",
-    price: 490,
-    id: 8
-
-  }
-];
-*/
+import { selectCartItems, clearCart , selectCartTotal} from '../../features/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
-//Läsa in produkterna via Redux
+
+
+
 export default function ShoppingCart({visibility, onClose}){
 
   const cartItems = useSelector(selectCartItems) //varukorgen
   const cartTotal = useSelector(selectCartTotal) //total priset i varukorgen 
 
+  const dispatch = useDispatch();  
+
   function handlePaymentBtn(){
+    const dateTime = new Date();
+    console.log(dateTime);
+
+    
+
     //spara ev hyrfimler lokalt
-    const rentals = cartItems.filter((item) => {
-      item.type === "RENTAL"
-      console.log(item.type)
-    })
+    const rentals = cartItems.filter((item) => item.type === "RENTAL");
+    const oldRentalList = JSON.parse(localStorage.getItem('rental') || '[]');
+    const saveRental = [...oldRentalList, ...rentals.map(item => ({...item, rentTime: dateTime}))];
     
+    localStorage.setItem('rental', JSON.stringify(saveRental));
+
+    //Spara köpta posters lokalt
+    const posters = cartItems.filter((item) => item.type === "POSTER");
+    const  savePoster = rentals.map((item) => ({...item, purchasedTime: dateTime}));
+    localStorage.setItem('posters', JSON.stringify(savePoster));
+
+    //Spara köpta filmer lokalt
+    const purchased = cartItems.filter((item) => item.type === "PURCHASED");
+    const oldpurchasedList = JSON.parse(localStorage.getItem('purchased') || '[]');
+    const savePurchased = [...oldpurchasedList, ...purchased.map(item => ({...item, rentTime: dateTime}))];
     
-    localStorage.setItem('rentals', JSON.stringify(rentals));
-    
+    localStorage.setItem('purchased', JSON.stringify(savePurchased));
+
+    dispatch(clearCart());
+  
   }
+
 
   React.useEffect(() => {
     if (visibility) {
