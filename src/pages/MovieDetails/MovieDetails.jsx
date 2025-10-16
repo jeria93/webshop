@@ -11,8 +11,10 @@ import "./movieDetails.css";
 import MovieBackdrop from "../../components/MovieBackdrop/MovieBackdrop";
 import MovieMeta from "../../components/MovieMeta/MovieMeta";
 import TrailerButton from "../../components/TrailerButton/TrailerButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cartSlice.js";
+import HeartButton from "../../components/HeartButton.jsx";
+import { selectIsFavorite, toggleFavorite } from "../../features/favoritesSlice.js";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -20,6 +22,8 @@ export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const numericId = Number(id);
+  const isFavorite = useSelector((state) => selectIsFavorite(state, numericId));
 
   useEffect(() => {
     setLoading(true);
