@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  /* min-height: auto;
+  min-width: auto; */
 }
 
 .title {
@@ -13,6 +15,9 @@
 
 .subtitle {
   color: var(--light);
+}
+body{
+    background: url("/background.jpg") center / cover no-repeat fixed;
 }
 
 /* 
