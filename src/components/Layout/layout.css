@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   right: 0;
-   top: 0;
+  top: 0;
   background: rgba(0,0,0,.7);
   backdrop-filter: blur(12px) saturate(120%); 
   /* margin-inline: auto; */
@@ -70,8 +70,12 @@
  justify-self: start;
  display: inline-flex;
  align-items: center;
- width: 150px;        
+ width: 200px;        
  height: auto;
+}
+.logoImg:active{
+   transform: translatex(1px); 
+   width: 205px;
 }
 
 /* Margin för content under navbar */
@@ -85,7 +89,7 @@
   color: rgb(74, 130, 194);
   border: 1px solid rgb(74, 130, 194);;
 }
-/* max-width behöver höjas om fler ikoner i navbar tillkommer */
+/* Mobilanppassning */
 @media (max-width: 680px) {
   
   .menuButton {
@@ -101,12 +105,16 @@
   }
     .navbar {
     grid-template-columns: auto auto;
-    padding: 8px 14px;
+    padding: 4px 14px;
   }
 
   .logoImg { 
-    width: 128px; 
+    width: 150px; 
   }
+  .logoImg:active{
+   transform: translatex(1px); 
+   width: 155px;
+}
 
     .navCenter {
     position: absolute;
@@ -114,7 +122,7 @@
     right: 14px;               
     display: none;
     flex-direction: column;
-    min-width: 20vw;
+    min-width: 25vw;
     width: min(20vw, 320px);
     margin-top: 6px;         
     background: rgba(0,0,0,.8);
