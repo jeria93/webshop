@@ -2,8 +2,9 @@ import './account.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn, logOut } from '../../features/loginSlice';
-import { selectFavorites } from '../../features/favoritesSlice';
+import { clearFavorites, selectFavorites, toggleFavorite } from '../../features/favoritesSlice';
 import MoviePoster from '../../components/MoviePoster/MoviePoster';
+import { ClearFavoritesButton, RemoveFavoriteButton } from '../../components/FavoriteButtons.jsx';
 
 
 const Account = () => {
@@ -39,6 +40,14 @@ const Account = () => {
         dispatch(logOut());
         setIsGuest(false);
         setActiveTab('profile');
+    };
+
+    const handleRemoveFavorite = (movie) => {
+        dispatch(toggleFavorite(movie));
+    };
+
+    const handleClearFavorites = () => {
+        dispatch(clearFavorites());
     };
 
 
@@ -120,16 +129,25 @@ const Account = () => {
                     <div className='tab-content'>
                         <h2>Dina gillade filmer</h2>
                         {favoriteMovies.length > 0 ? (
-                            <div className='movies-grid'>
-                                {favoriteMovies.map((movie) => (
-                                    <div key={movie.id} className='movie-card'>
-                                        <h3>{movie.title}</h3>
-                                        <MoviePoster path={movie.poster_path} />
-                                    </div>
-                                ))}
-
-                            </div>
-
+                            <>
+                                <ClearFavoritesButton
+                                    disabled={favoriteMovies.length === 0}
+                                    onClear={handleClearFavorites}
+                                />
+                                <div className='movies-grid'>
+                                    {favoriteMovies.map((movie) => (
+                                        <div key={movie.id} className='movie-card'>
+                                            <h3>{movie.title}</h3>
+                                            <MoviePoster path={movie.poster_path} />
+                                            <RemoveFavoriteButton
+                                                onRemove={() => handleRemoveFavorite(movie)}
+                                            />
+                                        </div>
+                                    ))}
+    
+                                </div>
+    
+                            </>
                         ) : (
                             <p>Du har inte gillat några filmer ännu.</p>
                         )}
