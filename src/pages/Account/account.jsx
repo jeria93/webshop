@@ -5,6 +5,7 @@ import { logIn, logOut } from '../../features/loginSlice';
 import { clearFavorites, selectFavorites, toggleFavorite } from '../../features/favoritesSlice';
 import MoviePoster from '../../components/MoviePoster/MoviePoster';
 import { ClearFavoritesButton, RemoveFavoriteButton } from '../../components/FavoriteButtons.jsx';
+import { fixDateTime, rentalTimeLeft } from '../../utils/timeDate';
 
 
 const Account = () => {
@@ -92,8 +93,9 @@ const Account = () => {
                                     <div key={movie.id} className='movie-card'>
                                         <h3>{movie.title}</h3>
                                         <MoviePoster path={movie.poster_path} />
-                                        <p>Hyrd: {movie.rentDate}</p>
-                                        <p className='expires'>Går ut: {movie.expires}</p>
+                                        <p>Hyrd: {fixDateTime(movie.rentTime, "T")}</p>
+                                        <p className='expires'>Titta inom: </p>
+                                        <p> {rentalTimeLeft(movie.id, movie.rentTime,{hour: 0, min: 20 , sek: 0})}</p>
                                         <button className='watch-btn'>Titta nu</button>
                                     </div>
                                 ))}
@@ -114,7 +116,7 @@ const Account = () => {
                                     <div key={movie.id} className='movie-card'>
                                         <h3>{movie.title}</h3>
                                         <MoviePoster path={movie.poster_path}/>
-                                        <p>Köpt: {movie.purchaseDate}</p>
+                                        <p>Köpt: {fixDateTime(movie.rentTime, "T")}</p>
                                         <button className='watch-btn'>Titta nu</button>
                                     </div>
                                 ))}
