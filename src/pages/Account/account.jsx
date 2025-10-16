@@ -1,8 +1,9 @@
 import './account.css';
 import { useState } from 'react';
-import MoviePoster from '../../components/MoviePoster/MoviePoster';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn, logOut } from '../../features/loginSlice';
+import { selectFavorites } from '../../features/favoritesSlice';
+import MoviePoster from '../../components/MoviePoster/MoviePoster';
 
 
 const Account = () => {
@@ -24,12 +25,7 @@ const Account = () => {
     //Hämta lokalt sparad fildata
     const rentedMovies = JSON.parse(localStorage.getItem('rental') || '[]')
     const purchasedMovies = JSON.parse(localStorage.getItem('purchased') || '[]')
-    
-    const wishlist = [
-        { id: 7, title: 'Dune', addedDate: "2025-10-09", poster_path: "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" },
-        { id: 8, title: 'Oppenheimer', addedDate: "2025-10-09", poster_path: "/ptpr0kGAckfQkJeJIt8st5dglvd.jpg" },
-        { id: 9, title: 'Avatar', addedDate: "2025-10-09", poster_path: "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" },
-    ];
+    const favoriteMovies = useSelector(selectFavorites);
 
     const handleLogin = () => {
        dispatch(logIn())
@@ -58,7 +54,7 @@ const Account = () => {
                     <button className={`tab-button ${activeTab === "profile" ? "active" : ""}`} onClick={() => setActiveTab('profile')}>Profil</button>
                     <button className={`tab-button ${activeTab === "rented" ? "active" : ""}`} onClick={() => setActiveTab('rented')}>Hyrda filmer</button>
                     <button className={`tab-button ${activeTab === "purchased" ? "active" : ""}`} onClick={() => setActiveTab('purchased')}>Köpta filmer</button>
-                    <button className={`tab-button ${activeTab === "wishlist" ? "active" : ""}`} onClick={() => setActiveTab('wishlist')}>Önskelista</button>
+                    <button className={`tab-button ${activeTab === "favorites" ? "active" : ""}`} onClick={() => setActiveTab('favorites')}>Gillade filmer</button>
                 </div>
 
                 <div className='account-content'>
@@ -120,24 +116,22 @@ const Account = () => {
                     </div>
                 )}
 
-                {activeTab === 'wishlist' && (
+                {activeTab === 'favorites' && (
                     <div className='tab-content'>
-                        <h2>Dina sparade filmer</h2>
-                        {wishlist.length > 0 ? (
+                        <h2>Dina gillade filmer</h2>
+                        {favoriteMovies.length > 0 ? (
                             <div className='movies-grid'>
-                                {wishlist.map((movie) => (
+                                {favoriteMovies.map((movie) => (
                                     <div key={movie.id} className='movie-card'>
                                         <h3>{movie.title}</h3>
                                         <MoviePoster path={movie.poster_path} />
-                                        <button className='rent-btn'>Hyr nu</button>
-                                        <button className='purchase-btn'>Köp</button>
                                     </div>
                                 ))}
 
                             </div>
 
                         ) : (
-                            <p>Du har inga sparade filmer.</p>
+                            <p>Du har inte gillat några filmer ännu.</p>
                         )}
                     </div>
                 )}
