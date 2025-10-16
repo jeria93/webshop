@@ -16,15 +16,17 @@ const cartSlice = createSlice({
       reducer(state, action) {
         const item = action.payload;
         const existing = state.items.find(
-          (cartItem) => cartItem.id === item.id
+          (cartItem) => cartItem.id === item.id && cartItem.type === item.type
         );
         if (existing) {
+          if(item.type == "POSTER"){ //endast kunna öka antalet om det är posters
           existing.quantity += 1;
+          }
         } else {
           state.items.push(item);
         }
       },
-      prepare(movie, type = "RENTAL") {
+      prepare(movie, type) {
         const id = Number(movie?.id);
         return {
           payload: {
@@ -39,25 +41,27 @@ const cartSlice = createSlice({
       },
     },
     addQuantity: (state, action) => {
-      const existingItem = state.items.find((item) => item.id === action.payload)
+      const {id, type} = action.payload
+      const existingItem = state.items.find((item) => item.id === id && item.type === type)
       existingItem.quantity += 1;
     },
     subQuantity: (state, action) => {
-      const existingItem = state.items.find((item) => item.id === action.payload)
+      const {id, type} = action.payload
+      const existingItem = state.items.find((item) => item.id === id && item.type === type)
         if(existingItem.quantity <= 1){
-          const id = action.payload;
-          state.items = state.items.filter((cartItem) => cartItem.id !== id);
+          
+          state.items = state.items.filter((cartItem) => !(cartItem.id === id && cartItem.type === type));
         }else {
           existingItem.quantity -= 1;
         }
     },
     removeFromCart: {
       reducer(state, action) {
-        const id = action.payload;
-        state.items = state.items.filter((cartItem) => cartItem.id !== id);
+        const {id, type} = action.payload;
+        state.items = state.items.filter((cartItem) => !(cartItem.id === id && cartItem.type === type));
       },
-      prepare(id) {
-        return { payload: Number(id) };
+      prepare(id, type) {
+        return { payload: {id, type} };
       },
     },
     clearCart(state) {
