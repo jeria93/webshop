@@ -26,7 +26,7 @@ export default function HomePage() {
  if (!movies.length)
   return <div style={{ padding: 16 }}>Inga nya filmer hittades.</div>;
   return (
-    <div style={{ padding: 16 }}>
+    <div className="home"style={{ padding: 16 }}>
       <h1 className="title">Populära Filmer...</h1>
       <p className="subtitle">
         Gå till <Link to="/search">Sök</Link> för att hitta filmer.

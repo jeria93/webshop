@@ -1,9 +1,16 @@
-
+.catergoryPage{
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  width: 85vw;
+  max-width: 550px;
+ 
+}
 body{
   margin:0px;
   display: flex;
   flex-direction: column;
-  background: url("/background.jpg") center / cover no-repeat fixed;
+
 }
 .movie-card { 
   display: flex;
@@ -29,6 +36,7 @@ body{
 .movie-card p {
    margin-top: auto;   
    display: block;
+   font-size: 16px;
 }
 .movie-card h4{
   line-clamp:4;  
@@ -63,7 +71,16 @@ body{
   margin: 15px 0 12px 0;
   color: rgb(232, 232, 240);
 }
-
+@media (max-width: 768px){
+  .catergoryPage{
+    padding: 12px;
+  }
+}
+@media (max-width: 480px){
+  .catergoryPage{
+    padding: 8px;
+  }
+}
 
 
 
