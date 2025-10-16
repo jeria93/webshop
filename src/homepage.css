@@ -16,9 +16,7 @@
 .subtitle {
   color: var(--light);
 }
-body{
-    background: url("/background.jpg") center / cover no-repeat fixed;
-}
+
 
 /* 
 .logo {
@@ -58,6 +56,13 @@ body{
 } */
  /* body { 
   margin-top: 50px; } */
+  .home{
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  width: 85vw;
+  max-width: 650px;
+  }
 .newsCard{
  display: grid;
  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -117,9 +122,21 @@ body{
   opacity: 0.75;
   color: white ;
   margin-top: auto;
+  font-size: 16px;
 }
 .infoText{
   display: flex;
   flex-direction: column;
   margin-top: auto;
+  
+}
+@media (max-width: 768px){
+  .home{
+    padding: 12px;
+  }
+}
+@media (max-width: 480px){
+  .home{
+    padding: 8px;
+  }
 }
