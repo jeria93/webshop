@@ -19,27 +19,27 @@ export default function ShoppingCart({visibility, onClose}){
   const dispatch = useDispatch();  
 
   function handlePaymentBtn(){
-    const dateTime = new Date();
-    console.log(dateTime);
-
+  
+    const timeStamp = Date.now();
     
 
     //spara ev hyrfimler lokalt
     const rentals = cartItems.filter((item) => item.type === "RENTAL");
     const oldRentalList = JSON.parse(localStorage.getItem('rental') || '[]');
-    const saveRental = [...oldRentalList, ...rentals.map(item => ({...item, rentTime: dateTime}))];
+    const saveRental = [...oldRentalList, ...rentals.map(item => ({...item, rentTime: timeStamp}))];
     
     localStorage.setItem('rental', JSON.stringify(saveRental));
 
     //Spara köpta posters lokalt
     const posters = cartItems.filter((item) => item.type === "POSTER");
-    const  savePoster = rentals.map((item) => ({...item, purchasedTime: dateTime}));
+    const  savePoster = rentals.map((item) => ({...item, purchasedTime: timeStamp}));
+    
     localStorage.setItem('posters', JSON.stringify(savePoster));
 
     //Spara köpta filmer lokalt
     const purchased = cartItems.filter((item) => item.type === "PURCHASED");
     const oldpurchasedList = JSON.parse(localStorage.getItem('purchased') || '[]');
-    const savePurchased = [...oldpurchasedList, ...purchased.map(item => ({...item, rentTime: dateTime}))];
+    const savePurchased = [...oldpurchasedList, ...purchased.map(item => ({...item, rentTime: timeStamp}))];
     
     localStorage.setItem('purchased', JSON.stringify(savePurchased));
 
