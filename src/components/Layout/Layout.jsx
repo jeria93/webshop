@@ -26,7 +26,9 @@ export default function Layout() {
       />
 
       <nav className="navbar"> 
+        <Link to="/">
         <img className="logoImg" src={logo} alt="MovieCart"></img>
+        </Link>
 
         {/* Mobilanpassad knapp för att få upp menyn/ förvinner om skärmen är större */}
         <button className="menuButton" aria-expanded={menuOpen} aria-controls="navCenter"
