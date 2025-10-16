@@ -1,6 +1,6 @@
 import "./HeartButton.css";
 
-export default function HeartButton({ liked = false, onToggle, size = 34 }) {
+export default function HeartButton({ liked = false, onToggle }) {
   return (
     <button
       type="button"

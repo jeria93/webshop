@@ -14,7 +14,10 @@ import TrailerButton from "../../components/TrailerButton/TrailerButton";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cartSlice.js";
 import HeartButton from "../../components/HeartButton.jsx";
-import { selectIsFavorite, toggleFavorite } from "../../features/favoritesSlice.js";
+import {
+  selectIsFavorite,
+  toggleFavorite,
+} from "../../features/favoritesSlice.js";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -22,8 +25,7 @@ export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const numericId = Number(id);
-  const isFavorite = useSelector((state) => selectIsFavorite(state, numericId));
+  const isFavorite = useSelector((state) => selectIsFavorite(state, id));
 
   useEffect(() => {
     setLoading(true);
@@ -72,22 +74,42 @@ export default function MovieDetails() {
   const rent = rentPriceFromId(movie.id);
   const buy = buyPriceFromId(movie.id);
   const poster = posterPriceFromId(movie.id);
+  const handleToggleFavorite = () => {
+    if (movie) {
+      dispatch(toggleFavorite(movie));
+    }
+  };
 
   return (
     <div className="details">
       <section className="details__hero">
-  <div className="details__container">
-    <div className="hero__image-container">
-      <MovieBackdrop path={bannerImagePath} alt={title} />
-      <TrailerButton movieTitle={title} videoResults={movie.videos?.results} />
-    </div>
-  </div>
-</section>
+        <div className="details__container">
+          <div className="hero__image-container">
+            <MovieBackdrop path={bannerImagePath} alt={title} />
+            <TrailerButton
+              movieTitle={title}
+              videoResults={movie.videos?.results}
+            />
+          </div>
+        </div>
+      </section>
 
       <section className="details__main">
         <div className="details__container">
           <div className="details__info">
-            <h1 className="details__title">{title}</h1>
+            <div
+              className="details__title-row"
+              style={{ display: "flex", alignItems: "center", gap: "12px" }}
+            >
+              <h1 className="details__title" style={{ marginBottom: 0 }}>
+                {title}
+              </h1>
+              <HeartButton
+                liked={isFavorite}
+                onToggle={handleToggleFavorite}
+                size={28}
+              />
+            </div>
             <MovieMeta movie={movie} castCount={3} />
 
             <p className="details__overview">
@@ -96,7 +118,7 @@ export default function MovieDetails() {
 
             {/* <TrailerButton movieTitle={title} videoResult={movie.videos?.results} /> */}
 
-           {/** Hyr knapp */}
+            {/** Hyr knapp */}
             <div className="details__price-actions">
               <button
                 className="details__button details__button--rent"
@@ -107,11 +129,11 @@ export default function MovieDetails() {
                 <span className="details__button-type">Hyr</span>
                 <span className="details__button-price">{formatSEK(rent)}</span>
               </button>
-           {/** Köp knapp */}
+              {/** Köp knapp */}
               <button
                 className="details__button details__button--buy"
-                onClick={() => {dispatch(addToCart(movie, "PURCHASED"));
-                 
+                onClick={() => {
+                  dispatch(addToCart(movie, "PURCHASED"));
                 }}
               >
                 <span className="details__button-type">Köp</span>
@@ -121,14 +143,14 @@ export default function MovieDetails() {
               <button
                 className="details__button details__button--poster"
                 onClick={() => {
-                  dispatch(
-                    addToCart(movie, "POSTER"));
+                  dispatch(addToCart(movie, "POSTER"));
                 }}
               >
                 <span className="details__button-type">Poster</span>
-                <span className="details__button-price">{formatSEK(poster)}</span>
+                <span className="details__button-price">
+                  {formatSEK(poster)}
+                </span>
               </button>
-
             </div>
           </div>
         </div>
@@ -136,8 +158,3 @@ export default function MovieDetails() {
     </div>
   );
 }
-
-// priser för köpa, hyra och affisch
-// extrahera kod till egna komponentner?
-// lägga till css för MovieMeta.jsx
-// navigera genom search till details
