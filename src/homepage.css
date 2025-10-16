@@ -86,7 +86,9 @@
 }
 .newsCard__item article:hover{
   border: 1px solid  rgb(143, 175, 212);
+  height: min-content;
 }
+
 .newsCard img,
 .newsCard__placeholder {
   margin-top: 10px;
