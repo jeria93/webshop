@@ -19,7 +19,7 @@
  
 function Category(){
 
-     const initial = ["Komedi", "Skräck", "Action", "Drama", "Romantik", "Amination", "Äventyr", "SciFi", "Thriller"]
+     const initial = ["Komedi", "Skräck", "Action", "Drama", "Romantik", "Animation", "Äventyr", "SciFi", "Thriller"]
     .map(name => ({ name, id: GENRE_IDS[name], items: [], loading: true }));
 
     const [sections, setSections] = useState(initial)
