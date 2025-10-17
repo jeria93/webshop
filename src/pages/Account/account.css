@@ -1,0 +1,437 @@
+.account-container {
+  padding: 20px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 15px auto;
+  width: 95%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MARK: Header 
+*/
+.account-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.account-header h1 {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, var(--accent), #22d3ee);
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.account-header p {
+  color: #a0a0a0;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  line-height: 1.4;
+}
+
+/* Kortet inuti containern */
+.account-card {
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 12px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.account-card p {
+  color: #a0a0a0;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* MARK: Form 
+*/
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #d1d1d1;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: rgba(26, 26, 46, 0.7);
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  color: var(--light);
+  font-size: 16px; /* Behåll 16px för att förhindra zoom på iOS */
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+.divider {
+  margin: 12px 0;
+  text-align: center;
+  font-weight: 500;
+  color: #a0a0a0;
+  font-size: 14px;
+}
+
+/* MARK: -Buttons 
+*/
+.btn1,
+.btn2 {
+  display: inline-block;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn1 {
+  background: linear-gradient(135deg, var(--accent), #0891b2);
+  color: var(--light);
+}
+
+.btn1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(69, 140, 233, 0.4);
+}
+
+.btn2 {
+  background: linear-gradient(135deg, var(--gray), #4a5568);
+  color: white;
+}
+
+.btn2:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px #46567066;
+}
+.account-content {
+  min-height: 200px;
+}
+
+.account-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 14px;
+}
+
+.account-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.account-footer a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* MARK: Tabs 
+*/
+.account-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 15px;
+}
+
+.tab-button {
+  padding: 10px 16px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #3394fb);
+  color: var(--light);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  text-align: center;
+}
+
+.tab-button:hover {
+  background: linear-gradient(135deg, #3394fb, var(--accent));
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent));
+  border: #ffffff 1px solid;
+  border-style: inset;
+}
+
+.tab-content h2 {
+  margin-bottom: 20px;
+  color: var(--light);
+  text-align: center;
+  text-decoration: underline var(--accent);
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--light);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+}
+
+.info-item-label {
+  font-weight: bold;
+  color: var(--light);
+}
+
+/* MARK: Movie-grid 
+*/
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.movie-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.movie-card h3 {
+  margin: 0 0 8px 0;
+  color: var(--light);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  height: 2.4em;
+  overflow: hidden;
+  line-clamp: 2;
+}
+
+.movie-card p {
+  margin: 4px 0;
+  font-size: 0.8rem;
+  color: var(--light);
+}
+
+.movie-card .expires {
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+/* MARK: Movie Btn 
+*/
+.watch-btn,
+.rent-btn,
+.purchase-btn {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 0.8rem;
+}
+
+.watch-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: var(--light);
+}
+
+.rent-btn {
+  background: linear-gradient(135deg, #007bff, #0dcaf0);
+  color: var(--light);
+}
+
+.purchase-btn {
+  background: linear-gradient(135deg, #6c757d, #adb5bd);
+  color: var(--light);
+}
+
+.clear-favorites-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 0.85rem;
+  background: linear-gradient(135deg, crimson, lightcoral);
+  color: var(--light);
+}
+
+.clear-favorites-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.remove-favorite-btn {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 0.8rem;
+  background: linear-gradient(135deg, darkorange, coral);
+  color: var(--light);
+}
+
+.remove-favorite-btn:hover,
+.clear-favorites-btn:hover {
+  transform: translateY(-2px);
+}
+
+.account-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #dc3545, #ff3d50);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ff3a4e, #ff3a4e);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+}
+
+/* Media Queries för olika skärmstorlekar */
+@media (max-width: 480px) {
+  .account-container {
+    padding: 15px 10px;
+    margin: 10px auto;
+    width: 98%;
+  }
+
+  .account-card {
+    padding: 20px 15px;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .movie-card {
+    padding: 10px;
+  }
+
+  .movie-card h3 {
+    font-size: 0.8rem;
+  }
+
+  .info-item {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Touch-vänligare på mobil */
+@media (hover: none) {
+  .btn1:hover,
+  .btn2:hover,
+  .watch-btn:hover,
+  .rent-btn:hover,
+  .purchase-btn:hover,
+  .logout-btn:hover,
+  .tab-button:hover {
+    transform: none;
+  }
+
+  .tab-button:active,
+  .btn1:active,
+  .btn2:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Stöd för landscape-mode på mobil */
+@media (max-height: 500px) and (orientation: landscape) {
+  .account-container {
+    padding: 15px;
+    margin: 10px auto;
+  }
+
+  .account-header {
+    margin-bottom: 20px;
+  }
+
+  .account-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .account-tabs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

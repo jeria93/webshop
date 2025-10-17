@@ -1,0 +1,163 @@
+.layout-container {
+  padding: 16px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(12px) saturate(120%); 
+  /* margin-inline: auto; */
+  z-index: 1000;
+}
+
+.navbar a {
+  display: inline-flex;     
+  align-items: center;
+  text-decoration: none;
+  color: rgb(74, 130, 194);
+  padding: 10px 15px;
+  margin: 0 5px;
+  
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  color:rgb(143, 175, 212);
+}
+.navCenter{
+  justify-self: center;
+  display: flex;
+  align-items: center;
+
+}
+.linkIcon{
+  display: flex;
+  flex-direction: column;
+  
+}
+.as-link {
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: rgb(74, 130, 194);
+  padding: 10px 15px;
+  margin: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.as-link:focus {
+  outline: none; /* Remove focus outline on click/focus */
+}
+
+.as-link:hover {
+  text-decoration: underline;
+  color: rgb(143, 175, 212);
+}
+
+.logoImg{
+ justify-self: start;
+ display: inline-flex;
+ align-items: center;
+ width: 200px;        
+ height: auto;
+}
+.logoImg:active{
+   transform: translatex(1px); 
+   width: 205px;
+}
+
+/* Margin för content under navbar */
+.content-wrapper {
+  margin-top: 100px;
+}
+
+.menuButton {
+  display:none;
+  background: transparent;
+  color: rgb(74, 130, 194);
+  border: 1px solid rgb(74, 130, 194);;
+}
+/* Mobilanppassning */
+@media (max-width: 680px) {
+  
+  .menuButton {
+    display: inline-flex;
+    padding: 8px;
+    cursor: pointer;
+    color: rgb(74, 130, 194);
+    justify-self: end; 
+  }
+  .menuButton:hover{
+   color:rgb(143, 175, 212);
+   border: 1px solid rgb(143, 175, 212);
+  }
+    .navbar {
+    grid-template-columns: auto auto;
+    padding: 4px 14px;
+  }
+
+  .logoImg { 
+    width: 150px; 
+  }
+  .logoImg:active{
+   transform: translatex(1px); 
+   width: 155px;
+}
+
+    .navCenter {
+    position: absolute;
+    top: 100%;                 
+    right: 14px;               
+    display: none;
+    flex-direction: column;
+    min-width: 25vw;
+    width: min(20vw, 320px);
+    margin-top: 6px;         
+    background: rgba(0,0,0,.8);
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+  .navCenter .linkIcon,
+  .navCenter a {
+    padding: 14px 12px;
+    border-top: 1px solid rgba(149, 210, 44, 0.06);
+  }
+  .navCenter.is-open {
+    display: flex;
+    justify-content: end;
+  }
+  .content-wrapper { margin-top: 50px; }
+  
+}
+
+.cart_wrapper{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart_badge{
+  position: absolute;
+  top: 3px;
+  right: 14px;
+  color: rgb(241, 83, 5);
+  font-size: 1.0rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  min-width: 12px;
+  text-align: center;
+  z-index: 5;
+}
+

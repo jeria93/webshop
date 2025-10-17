@@ -1,4 +1,4 @@
-import { posterUrl } from "../features/api.js";
+import { posterUrl } from "../../features/api";
 
 export default function MoviePoster({
   path,

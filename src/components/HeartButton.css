@@ -1,0 +1,30 @@
+.heart-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: transform 120ms ease;
+}
+
+.heart-btn:active {
+  transform: translateY(1px);
+}
+
+.heart-icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-color: gainsboro;
+  mask-image: url("../assets/heart.favorite.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: background-color 140ms ease;
+}
+
+.heart-btn.is-liked .heart-icon {
+  background-color: crimson;
+}

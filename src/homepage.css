@@ -1,0 +1,142 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  /* min-height: auto;
+  min-width: auto; */
+}
+
+.title {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--light);
+}
+
+.subtitle {
+  color: var(--light);
+}
+
+
+/* 
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+ /* body { 
+  margin-top: 50px; } */
+  .home{
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  width: 85vw;
+  max-width: 650px;
+  }
+.newsCard{
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
+ 
+}
+.newsCard__item{
+  display: block;
+  width: 100%;
+  min-width: 0; 
+  text-decoration: none;
+  color:initial;
+  height: 100%;
+ 
+}
+.newsCard__item article {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;                 
+  height: 100%;
+  align-items: stretch;
+  background: rgba(126, 150, 207, 0.02); 
+  backdrop-filter: blur(12px) saturate(120%);        
+  border-radius: 8px;
+  border: 1px solid white;
+  overflow: hidden;
+  padding: 10px;
+  
+}
+.newsCard__item article:hover{
+  border: 1px solid  rgb(143, 175, 212);
+  height: min-content;
+}
+
+.newsCard img,
+.newsCard__placeholder {
+  margin-top: 10px;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+.newsCard__title {
+  min-width: 0;
+  margin: 8px 10px 2px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: white;
+}
+.newsCard__meta {
+  margin: 0 10px 10px;
+  font-size: 0.8rem;
+  opacity: 0.75;
+  color: white ;
+  margin-top: auto;
+  font-size: 16px;
+}
+.infoText{
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  
+}
+@media (max-width: 768px){
+  .home{
+    padding: 12px;
+  }
+}
+@media (max-width: 480px){
+  .home{
+    padding: 8px;
+  }
+}
